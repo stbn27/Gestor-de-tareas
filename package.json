@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "tailwindcss": "^3.4.17"
+  },
+  "scripts": {
+    "build": "tailwindcss -i ./src/css/input.css -o ./dist/styles.css --watch",
+    "build:prod": "tailwindcss -i ./src/css/input.css -o ./dist/styles.css --minify"
   }
 }
