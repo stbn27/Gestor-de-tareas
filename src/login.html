@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Iniciar sesión • Organizador</title>
+	<link rel="icon" type="image/png" href="./img/icono.png" />
+
+	<!-- Aplica el tema antes de cargar CSS (evita FOUC) -->
+	<script>
+		(() => {
+			const KEY = 'theme';
+			const stored = localStorage.getItem(KEY);
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			const useDark = stored ? stored === 'dark' : prefersDark;
+			document.documentElement.classList.toggle('dark', useDark);
+			// Sigue cambios del SO si no hay preferencia guardada
+			if (!stored) {
+				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+					document.documentElement.classList.toggle('dark', e.matches);
+				});
+			}
+		})();
+	</script>
+        
+	<!-- CSS generado por Tailwind -->
+	<link rel="stylesheet" href="../dist/styles.css" />
+	<meta name="color-scheme" content="light dark">
+	<!-- theme-color por esquema -->
+	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc">
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
+</head>
+
+<body class="min-h-dvh antialiased bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+	<!-- Fondo -->
+	<div class="fixed inset-0 -z-10">
+		<div class="absolute inset-0" style="
+			background:
+			url('./img/fondo0.png') center center / auto no-repeat,
+			linear-gradient(-150deg, #a8a6a6 0 52%, #0a2540 52% 100%);
+		"></div>
+		<!-- <div class="absolute inset-0 bg-no-repeat bg-cover bg-center auto" style="background-image: url('./img/fondo4.webp');"></div> -->
+		<div id="bg-overlay" class="absolute inset-0 bg-gray-700/50 dark:bg-slate-900/60"></div>
+	</div>
+
+	<!-- Botón para tema claro/oscuro -->
+	<button id="theme-toggle" type="button"
+		class="fixed top-3 right-3 z-50 inline-flex items-center gap-2 rounded-full bg-blue-900 text-slate-900 px-3 py-2 shadow-lg backdrop-blur transition hover:bg-bue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 dark:bg-slate-900/90 dark:text-white dark:hover:bg-slate-900">
+		<span class="sr-only">Cambiar entre modo claro y oscuro</span>
+		<span id="theme-icon" aria-hidden="true">☀️</span>
+	</button>
+
+	<!-- Contenido principal -->
+	<main class="relative flex min-h-dvh items-center justify-center p-4">
+		<!-- Tarjeta con efecto glass -->
+		<section class="w-full max-w-md">
+			<header class="mb-4 flex items-center gap-3">
+				<img src="./img/icono.png" alt="Logo" class="h-9 w-9 rounded-full shadow-md" />
+				<h1 class="text-xl font-semibold tracking-tight">Organizador de Tareas</h1>
+			</header>
+
+			<div class="rounded-2xl border border-white/15 bg-white/10 p-6 shadow-2xl backdrop-blur-xl">
+				<!-- Tabs -->
+				<nav class="mb-6 grid grid-cols-2 rounded-lg bg-black/5 dark:bg-white/10 p-1 text-sm">
+					<button id="tab-login" class="tab active col-span-1 rounded-md px-3 py-2 font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 data-[active=true]:bg-white data-[active=true]:text-slate-900"
+						data-target="panel-login" data-active="true">
+						Iniciar sesión
+					</button>
+					<button id="tab-join" class="tab col-span-1 rounded-md px-3 py-2 font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 data-[active=true]:bg-white data-[active=true]:text-slate-900"
+						data-target="panel-join" data-active="false">
+						Unirse mediante código
+					</button>
+				</nav>
+
+				<!-- Paneles -->
+				<section id="panel-login" class="panel space-y-5" aria-labelledby="tab-login">
+					<div>
+						<h2 class="text-lg font-semibold">Bienvenido de nuevo</h2>
+						<p class="text-sm text-slate-200/80">Accede con tu usuario y contraseña.</p>
+					</div>
+
+					<form class="space-y-4" action="#" method="post" autocomplete="on">
+						<div class="space-y-2">
+							<label for="usuario" class="block text-sm font-medium">Usuario</label>
+							<input id="usuario" name="usuario" type="text" required
+								class="w-full rounded-lg border border-black/10 bg-black/5 px-3 py-2 text-slate-900 placeholder:text-slate-500 shadow-inner outline-none ring-0 transition focus:border-sky-500 focus:bg-black/10 focus:shadow-sky-500/10 dark:border-white/20 dark:bg-white/10 dark:text-white dark:placeholder:text-white/60 dark:focus:border-sky-300 dark:focus:bg-white/15"
+								placeholder="usuario@correo" />
+						</div>
+
+						<div class="space-y-2">
+							<div class="flex items-center justify-between">
+								<label for="password" class="block text-sm font-medium">Contraseña</label>
+								<a href="#" class="text-xs text-sky-300 hover:text-sky-200">¿Olvidaste tu contraseña?</a>
+							</div>
+							<input id="password" name="password" type="password" required
+								class="w-full rounded-lg border border-black/10 bg-black/5 px-3 py-2 text-slate-900 placeholder:text-slate-500 shadow-inner outline-none ring-0 transition focus:border-sky-500 focus:bg-black/10 focus:shadow-sky-500/10 dark:border-white/20 dark:bg-white/10 dark:text-white dark:placeholder:text-white/60 dark:focus:border-sky-300 dark:focus:bg-white/15"
+								placeholder="••••••••" />
+						</div>
+
+						<button type="submit"
+							class="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-sky-500 px-4 py-2 font-semibold text-white shadow-lg shadow-sky-500/30 transition hover:bg-sky-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">
+							Iniciar sesión
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+								class="h-4 w-4 transition group-hover:translate-x-0.5">
+								<path d="M3.75 12a.75.75 0 0 1 .75-.75h12.638l-3.22-3.22a.75.75 0 1 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 1 1-1.06-1.06l3.22-3.22H4.5a.75.75 0 0 1-.75-.75Z" />
+							</svg>
+						</button>
+					</form>
+				</section>
+
+				<section id="panel-join" class="panel hidden space-y-5 min-h-[282px]" aria-labelledby="tab-join">
+					<div>
+						<h2 class="text-lg font-semibold">Unirse mediante código</h2>
+						<p class="text-sm text-slate-200/80">Introduce el código que te compartieron.</p>
+					</div>
+
+					<form class="space-y-4" action="#" method="post" autocomplete="off">
+						<div class="space-y-2">
+							<label for="codigo" class="block text-sm font-medium">Código</label>
+							<input id="codigo" name="codigo" type="text" inputmode="latin" minlength="4" maxlength="6" required
+								class="w-full tracking-widest uppercase rounded-lg border border-black/10 bg-black/5 px-3 py-2 text-slate-900 placeholder:text-slate-500 shadow-inner outline-none ring-0 transition focus:border-emerald-500 focus:bg-black/10 focus:shadow-emerald-500/10 dark:border-white/20 dark:bg-white/10 dark:text-white dark:placeholder:text-white/60 dark:focus:border-emerald-300 dark:focus:bg-white/15"
+								placeholder="ABCD-1234" />
+						</div>
+
+						<button type="submit"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 font-semibold text-white shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">
+							Unirse
+						</button>
+					</form>
+				</section>
+
+				<!-- Pie -->
+				<p class="mt-6 text-center text-xs text-white/70">Al continuar aceptas los
+					<a href="#" class="underline decoration-white/30 underline-offset-4 hover:decoration-white/60">términos</a>
+					y la <a href="#" class="underline decoration-white/30 underline-offset-4 hover:decoration-white/60">privacidad</a>.
+				</p>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer id="footer"
+		class="py-4 pe-4 text-end text-xs text-slate-600 bg-white/70 dark:text-white/70 dark:bg-slate-800/90 backdrop-blur-md">
+		Creado por STBN
+	</footer>
+
+	<script>
+		// Toggle de tema minimalista: alterna la clase 'dark' y guarda preferencia
+		(() => {
+			const KEY = 'theme';
+			const toggle = document.getElementById('theme-toggle');
+			const icon = document.getElementById('theme-icon');
+
+			function syncIcon() {
+				icon.textContent = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+			}
+			syncIcon();
+
+			toggle.addEventListener('click', () => {
+				const isDark = document.documentElement.classList.toggle('dark');
+				localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+				syncIcon();
+			});
+		})();
+
+		// Toggle simple entre pestañas y paneles
+		(function () {
+			const tabs = Array.from(document.querySelectorAll('.tab'));
+			const panels = Array.from(document.querySelectorAll('.panel'));
+			function activate(id) {
+				tabs.forEach(t => t.dataset.active = (t.dataset.target === id));
+				panels.forEach(p => p.classList.toggle('hidden', p.id !== id));
+			}
+			tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.target)));
+		})();
+	</script>
+</body>
+
+</html>
