@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>T'BAN — Inicio</title>
+    <link rel="icon" type="image/png" href="./img/icono.png" />
+    <meta name="description" content="Gestor de tareas tipo Trello con drag & drop y modo oscuro." />
+
+    <!-- Pre-aplicar tema para evitar FOUC -->
+    <script src="./js/tema.js"></script>
+
+    <link rel="stylesheet" href="../dist/styles.css" />
+    <link rel="stylesheet" href="../dist/personalizado.css">
+
+</head>
+
+<body
+    class="min-h-screen h-full bg-gray-50 text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100 flex flex-col overflow-x-hidden">
+
+    <!-- Header -->
+    <header
+        class="sticky top-0 z-40 border-b border-gray-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-gray-800 dark:bg-gray-900/70">
+        <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+            <!-- Brand -->
+            <div class="flex items-center gap-3">
+                <a href="#"
+                    class="flex items-center gap-2 font-bold tracking-tight text-brand hover:text-brand-700 dark:text-brand-400">
+                    <span class="inline-flex h-8 w-8 items-center justify-center rounded bg-brand text-white">T</span>
+                    <span class="text-lg">T'BAN</span>
+                </a>
+                <!-- Nav -->
+                <nav class="hidden items-center gap-1 sm:flex">
+                    <!-- Tableros -->
+                    <div class="relative">
+                        <button type="button" data-dropdown-toggle="menu-tableros"
+                            class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:hover:bg-gray-800">
+                            <span>Tableros</span>
+                            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div id="menu-tableros"
+                            class="dropdown hidden absolute left-0 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                            <button
+                                class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                                data-action="ver-tableros">Ver todos</button>
+                            <button
+                                class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                                data-action="mis-tableros">Tableros propios</button>
+                            <button
+                                class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                                data-action="tableros-unidos">Tableros unidos</button>
+                        </div>
+                    </div>
+
+                    <!-- Recientes -->
+                    <div class="relative">
+                        <button type="button" data-dropdown-toggle="menu-recientes"
+                            class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:hover:bg-gray-800">
+                            <span>Recientes</span>
+                            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div id="menu-recientes"
+                            class="dropdown hidden absolute left-0 mt-2 w-64 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                            <p class="px-3 py-2 text-gray-500 dark:text-gray-400">No hay recientes aún</p>
+                        </div>
+                    </div>
+
+                    <!-- Unirse a un tablero -->
+                    <button type="button" data-modal-open="modal-unirse"
+                        class="rounded-md px-3 py-2 text-sm font-medium text-brand hover:bg-brand/10 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:text-brand-400">Unirse</button>
+
+                    <!-- Crear tablero -->
+                    <button type="button" data-modal-open="modal-crear"
+                        class="inline-flex items-center gap-2 rounded-md bg-brand px-3 py-2 text-sm font-semibold text-white shadow hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand/40">
+                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                        </svg>
+                        <span>Crear tablero</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2">
+                <!-- Theme toggle -->
+                <button id="theme-toggle" type="button"
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:border-gray-700 dark:hover:bg-gray-800"
+                    aria-label="Cambiar tema">
+                    <svg id="icon-sun" class="h-5 w-5 hidden dark:inline" viewBox="0 0 24 24" fill="currentColor"
+                        aria-hidden="true">
+                        <path
+                            d="M12 18a6 6 0 100-12 6 6 0 000 12zm0 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-22a1 1 0 011-1h0a1 1 0 110 2h0a1 1 0 01-1-1zM4.22 5.64a1 1 0 010-1.41L3.5 3.5a1 1 0 011.41-1.41l.71.71A1 1 0 014.22 5.64zM19.78 18.36a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zM1 12a1 1 0 011-1h1a1 1 0 110 2H2a1 1 0 01-1-1zm19 0a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM4.22 18.36a1 1 0 011.41 0l.71.71a1 1 0 01-1.41 1.41l-.71-.71a1 1 0 010-1.41zM18.36 4.22a1 1 0 010-1.41l.71-.71A1 1 0 1120.5 3.5l-.71.71a1 1 0 01-1.41 0z" />
+                    </svg>
+                    <svg id="icon-moon" class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="currentColor"
+                        aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+                    </svg>
+                </button>
+
+                <!-- Perfil -->
+                <div class="relative">
+                    <button type="button" data-dropdown-toggle="menu-perfil"
+                        class="inline-flex items-center gap-2 rounded-full border border-gray-200 p-1 pl-2 text-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:border-gray-700 dark:hover:bg-gray-800">
+                        <span class="hidden text-sm font-medium sm:inline">Perfil</span>
+                        <span
+                            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand text-white">U</span>
+                    </button>
+                    <div id="menu-perfil"
+                        class="dropdown hidden absolute right-0 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                        <button
+                            class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                            data-action="editar-perfil">Editar perfil</button>
+                        <div class="my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+                        <button
+                            class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                            data-action="ver-tableros">Ver tableros</button>
+                        <button
+                            class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                            data-action="mis-tableros">Tableros propios</button>
+                        <button
+                            class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                            data-action="tableros-unidos">Tableros unidos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Board -->
+    <main class="px-4 py-6 flex-1">
+
+        <div class="mx-auto max-w-7xl mb-4 flex items-center justify-between">
+            <h1 class="text-xl font-semibold">Mi tablero</h1>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Arrastra tarjetas entre listas</div>
+        </div>
+
+        <!-- Contenedor de tablero con scroll horizontal -->
+        <section class="relative flex-1 flex flex-col overflow-hidden min-h-0" id="mainContent">
+            <!-- Añadido min-h-0 para permitir que el hijo con overflow se expanda y flex-1 para ocupar todo el alto disponible -->
+            <div class="flex-1 flex flex-col pt-4 min-h-0" aria-label="Tablero Kanban">
+                <!-- Cambiado h-full por flex-1 + min-h-0 para que el contenedor ocupe todo el espacio vertical y el scrollbar quede pegado abajo -->
+                <div id="boardScroll"
+                    class="flex-1 pl-4 pr-4 flex items-start gap-4 overflow-x-auto overflow-y-hidden snap-x snap-mandatory"
+                    tabindex="0" aria-describedby="boardInstructions">
+                    <p id="boardInstructions" class="sr-only">Arrastra las listas horizontalmente y las actividades
+                        verticalmente o entre listas.</p>
+                    <div id="listsWrapper" class="flex items-start gap-4"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer
+        class="mt-auto border-t max-h-[80px] border-gray-200 bg-white/70 py-4 text-sm text-gray-600 dark:border-gray-800 dark:bg-gray-900/60 dark:text-gray-400">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4">
+            <p>© <span id="year"></span> T'BAN</p>
+            <a href="#" class="hover:text-brand dark:hover:text-brand-400">Privacidad</a>
+        </div>
+    </footer>
+
+
+    <!-- Plantillas ocultas -->
+    <template id="templateList">
+        <section
+            class="kanban-list w-72 flex-shrink-0 snap-start rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 bg-gradient-to-b p-3 relative"
+            data-list-id="" aria-label="Lista">
+            <!-- Asegurar que los menús no se corten: overflow-visible -->
+            <header
+                class="list-header rounded-xl px-3 py-2 mb-2 text-white flex items-center justify-between gap-2 overflow-visible">
+                <div class="flex flex-col min-w-0">
+                    <h2 class="list-title font-semibold text-sm truncate" contenteditable="false"></h2>
+                    <span class="list-desc text-[11px] opacity-90 truncate"></span>
+                </div>
+                <div class="flex flex-col items-end">
+                    <span class="list-count text-[10px] font-mono bg-white/20 px-2 py-0.5 rounded-full"
+                        aria-label="Cantidad de actividades">0</span>
+                    <button class="list-menu-btn mt-1 p-1 rounded hover:bg-white/20 focus-outline" aria-haspopup="true"
+                        aria-expanded="false" title="Opciones de la lista">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                            <circle cx="12" cy="6" r="1" />
+                            <circle cx="12" cy="12" r="1" />
+                            <circle cx="12" cy="18" r="1" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+            <ul class="tasks space-y-2 min-h-[40px]" aria-label="Actividades"></ul>
+            <div class="mt-3 flex justify-between items-center text-[11px] text-slate-500 dark:text-slate-400">
+                <button
+                    class="add-task-btn px-2 py-1 rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 focus-outline"
+                    data-action="add-task" title="Añadir actividad">+ Actividad</button>
+                <span class="lock-indicator hidden text-red-500 font-medium"
+                    aria-label="Lista bloqueada">Bloqueada</span>
+            </div>
+            <div class="list-menu absolute top-10 right-2 z-20 w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg p-2 text-xs space-y-1"
+                data-hidden="true" role="menu" aria-label="Menú de lista">
+                <button
+                    class="w-full text-left px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-700 focus-outline"
+                    data-list-action="edit">Editar</button>
+                <button
+                    class="w-full text-left px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-700 focus-outline"
+                    data-list-action="lock">Bloquear con clave</button>
+                <button
+                    class="w-full text-left px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-700 focus-outline"
+                    data-list-action="unlock" data-hidden="true">Remover bloqueo</button>
+                <button
+                    class="w-full text-left px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-700 focus-outline"
+                    data-list-action="delete">Eliminar</button>
+            </div>
+        </section>
+    </template>
+
+    <template id="templateTask">
+        <li class="task-item group rounded-lg px-3 py-2 shadow-sm border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-xs cursor-pointer focus-outline relative"
+            tabindex="0" data-task-id="" aria-label="Actividad">
+            <div class="flex justify-between gap-2 items-start">
+                <p class="task-title font-medium truncate flex-1"></p>
+                <button
+                    class="task-menu-btn p-1 -m-1 rounded hover:bg-slate-100 dark:hover:bg-slate-600 opacity-70 group-hover:opacity-100 focus:outline-none"
+                    aria-haspopup="true" aria-expanded="false" title="Opciones de actividad">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                        <circle cx="12" cy="6" r="1" />
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="12" cy="18" r="1" />
+                    </svg>
+                </button>
+                <div class="task-menu absolute top-5 right-0 z-30 w-40 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-md shadow-lg p-1 text-[11px] space-y-1"
+                    data-hidden="true" role="menu" aria-label="Menú actividad">
+                    <button class="w-full text-left px-3 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-700"
+                        data-task-action="edit">Editar</button>
+                    <button class="w-full text-left px-3 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-700"
+                        data-task-action="assign">Asignar</button>
+                    <button class="w-full text-left px-3 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-700"
+                        data-task-action="move">Mover a lista</button>
+                    <button
+                        class="w-full text-left px-3 py-1.5 rounded text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30"
+                        data-task-action="delete">Eliminar</button>
+                </div>
+            </div>
+            <div class="mt-1 flex flex-wrap gap-1 text-[10px] text-slate-500 dark:text-slate-400">
+                <span class="creator"></span>
+                <span class="due-date px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-600"></span>
+            </div>
+            <div class="details text-[10px] mt-1 text-slate-600 dark:text-slate-300 line-clamp-2"></div>
+        </li>
+    </template>
+
+    <!-- Form inline para nueva lista -->
+    <template id="templateAddListCard">
+        <div id="addListCard"
+            class="w-72 flex-shrink-0 snap-start border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl p-4 text-slate-500 dark:text-slate-400 flex flex-col items-stretch justify-start">
+            <button id="openAddListForm"
+                class="flex-1 flex flex-col items-center justify-center gap-2 hover:text-slate-700 dark:hover:text-slate-200 focus-outline"
+                aria-haspopup="true">
+                <span class="text-sm">+ Agregar nueva lista</span>
+            </button>
+            <form id="addListForm" class="hidden flex flex-col gap-3 mt-1" aria-label="Formulario nueva lista">
+                <input type="text" name="title" required placeholder="Título"
+                    class="w-full px-2 py-1 rounded border text-sm bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-brand/40" />
+                <textarea name="descripcion" placeholder="Descripción"
+                    class="w-full px-2 py-1 rounded border text-xs bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 resize-none min-h-[70px] focus:outline-none focus:ring-2 focus:ring-brand/40"></textarea>
+                <div class="flex gap-2">
+                    <select name="color"
+                        class="flex-1 px-2 py-1 rounded border text-xs bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-brand/40">
+                        <option value="indigo">Indigo</option>
+                        <option value="amber">Amber</option>
+                        <option value="fuchsia">Fuchsia</option>
+                        <option value="emerald">Emerald</option>
+                        <option value="red">Rojo</option>
+                    </select>
+                    <button class="px-3 py-1 rounded bg-brand text-white text-xs hover:bg-brand-600">Añadir</button>
+                </div>
+                <button type="button" id="cancelAddList"
+                    class="text-xs underline text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Cancelar</button>
+            </form>
+        </div>
+    </template>
+
+    <!-- Modales -->
+    <div id="modalsRoot"></div>
+
+    <template id="modalShareTemplate">
+        <div class="modal-overlay fixed inset-0 bg-slate-900/40 flex items-start md:items-center justify-center p-4 z-[200]"
+            data-modal-overlay data-close>
+            <div class="modal-panel w-full max-w-md bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 relative focus-outline"
+                role="dialog" aria-modal="true" aria-labelledby="modalShareTitle">
+                <h2 id="modalShareTitle" class="text-lg font-semibold mb-4">Compartir tablero</h2>
+                <form class="space-y-4" onsubmit="return false;">
+                    <div>
+                        <label class="block text-xs mb-1" for="shareCode">Código de lectura</label>
+                        <div class="flex gap-2">
+                            <input id="shareCode" type="text" readonly
+                                class="flex-1 px-3 py-2 rounded border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-sm"
+                                value="PRJ-ORG-2025" />
+                            <button
+                                class="copy-btn px-3 py-2 rounded bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 dark:hover:bg-slate-500 text-xs"
+                                data-copy="shareCode">Copiar</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs mb-1" for="shareLink">Link</label>
+                        <div class="flex gap-2">
+                            <input id="shareLink" type="text" readonly
+                                class="flex-1 px-3 py-2 rounded border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-sm"
+                                value="https://ejemplo.app/tablero/proyecto-organizador" />
+                            <button
+                                class="copy-btn px-3 py-2 rounded bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 dark:hover:bg-slate-500 text-xs"
+                                data-copy="shareLink">Copiar</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button"
+                            class="px-3 py-2 text-sm rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600"
+                            data-close>Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <template id="modalMembersTemplate">
+        <div class="modal-overlay fixed inset-0 bg-slate-900/40 flex items-start md:items-center justify-center p-4 z-[200]"
+            data-modal-overlay data-close>
+            <div class="modal-panel w-full max-w-md bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 relative focus-outline"
+                role="dialog" aria-modal="true" aria-labelledby="modalMembersTitle">
+                <h2 id="modalMembersTitle" class="text-lg font-semibold mb-4">Miembros</h2>
+                <ul id="membersList" class="space-y-3 mb-4"></ul>
+                <div class="flex justify-end">
+                    <button type="button"
+                        class="px-3 py-2 text-sm rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600"
+                        data-close>Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="modalConfirmTemplate">
+        <div class="modal-overlay fixed inset-0 bg-slate-900/40 flex items-start md:items-center justify-center p-4 z-[200]"
+            data-modal-overlay data-close>
+            <div class="modal-panel w-full max-w-sm bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 relative focus-outline"
+                role="dialog" aria-modal="true" aria-labelledby="modalConfirmTitle">
+                <h2 id="modalConfirmTitle" class="text-lg font-semibold mb-2">Confirmar</h2>
+                <p id="modalConfirmMessage" class="text-sm text-slate-600 dark:text-slate-300 mb-4">¿Estás seguro?</p>
+                <div class="flex justify-end gap-2">
+                    <button type="button"
+                        class="px-3 py-2 text-sm rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600"
+                        data-close>Cancelar</button>
+                    <button type="button" id="modalConfirmAccept"
+                        class="px-3 py-2 text-sm rounded bg-red-600 text-white hover:bg-red-700">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="modalEditListTemplate">
+        <div class="modal-overlay fixed inset-0 bg-slate-900/40 flex items-start md:items-center justify-center p-4 z-[200]"
+            data-modal-overlay data-close>
+            <div class="modal-panel w-full max-w-md bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 relative focus-outline"
+                role="dialog" aria-modal="true" aria-labelledby="modalEditListTitle">
+                <h2 id="modalEditListTitle" class="text-lg font-semibold mb-4">Editar lista</h2>
+                <form id="editListForm" class="space-y-4" onsubmit="return false;">
+                    <input type="hidden" name="listId" />
+                    <div>
+                        <label class="block text-xs mb-1">Título</label>
+                        <input name="title" type="text"
+                            class="w-full px-3 py-2 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-sm"
+                            required />
+                    </div>
+                    <div>
+                        <label class="block text-xs mb-1">Descripción</label>
+                        <textarea name="descripcion"
+                            class="w-full px-3 py-2 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-sm"
+                            rows="2"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs mb-1">Header (gradiente base)</label>
+                            <select name="headerColor"
+                                class="w-full px-2 py-1 rounded border text-xs bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600">
+                                <option value="indigo">Indigo</option>
+                                <option value="amber">Amber</option>
+                                <option value="fuchsia">Fuchsia</option>
+                                <option value="emerald">Emerald</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs mb-1">Fondo lista (gradiente)</label>
+                            <select name="bodyColor"
+                                class="w-full px-2 py-1 rounded border text-xs bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600">
+                                <option value="indigo">Indigo</option>
+                                <option value="amber">Amber</option>
+                                <option value="fuchsia">Fuchsia</option>
+                                <option value="emerald">Emerald</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <button type="button"
+                            class="px-3 py-2 text-sm rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600"
+                            data-close>Cancelar</button>
+                        <button type="submit"
+                            class="px-3 py-2 text-sm rounded bg-brand text-white hover:bg-brand-600">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <template id="modalEditTaskTemplate">
+        <div class="modal-overlay fixed inset-0 bg-slate-900/40 flex items-start md:items-center justify-center p-4 z-[220]"
+            data-modal-overlay data-close>
+            <div class="modal-panel w-full max-w-md bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 relative focus-outline"
+                role="dialog" aria-modal="true" aria-labelledby="modalEditTaskTitle">
+                <h2 id="modalEditTaskTitle" class="text-lg font-semibold mb-4">Detalle / Editar actividad</h2>
+                <form id="editTaskForm" class="space-y-4" onsubmit="return false;">
+                    <input type="hidden" name="taskId" />
+                    <input type="hidden" name="fromListId" />
+                    <div>
+                        <label class="block text-xs mb-1">Título</label>
+                        <input name="titulo" type="text"
+                            class="w-full px-3 py-2 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-sm"
+                            required />
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs mb-1">Creador</label>
+                            <select name="creador"
+                                class="w-full px-2 py-1 rounded border text-xs bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs mb-1">Vencimiento</label>
+                            <input name="vence" type="date"
+                                class="w-full px-2 py-1 rounded border text-xs bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs mb-1">Responsables</label>
+                        <div class="flex flex-wrap gap-2" id="taskAssignWrapper"></div>
+                    </div>
+                    <div>
+                        <label class="block text-xs mb-1">Detalles</label>
+                        <textarea name="detalles" rows="3"
+                            class="w-full px-3 py-2 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs mb-1">Mover a lista</label>
+                        <select name="moveToList"
+                            class="w-full px-2 py-1 rounded border text-xs bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600"></select>
+                    </div>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button"
+                            class="px-3 py-2 text-sm rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600"
+                            data-close>Cancelar</button>
+                        <button type="submit"
+                            class="px-3 py-2 text-sm rounded bg-brand text-white hover:bg-brand-600">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <template id="modalTaskDetailTemplate">
+        <div class="modal-overlay fixed inset-0 bg-slate-900/40 flex items-start md:items-center justify-center p-4 z-[210]"
+            data-modal-overlay data-close>
+            <div class="modal-panel w-full max-w-md bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 relative focus-outline"
+                role="dialog" aria-modal="true" aria-labelledby="taskDetailTitle">
+                <div class="flex items-start justify-between gap-4 mb-3">
+                    <h2 id="taskDetailTitle" class="text-lg font-semibold leading-snug">Actividad</h2>
+                    <div class="flex gap-2">
+                        <button id="detailEditBtn" type="button"
+                            class="px-2 py-1 text-xs rounded bg-brand text-white hover:bg-brand-600">Editar</button>
+                        <button type="button"
+                            class="px-2 py-1 text-xs rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600"
+                            data-close>Cerrar</button>
+                    </div>
+                </div>
+                <dl class="space-y-3 text-sm">
+                    <div>
+                        <dt class="font-medium text-slate-600 dark:text-slate-300 text-xs uppercase tracking-wide">Lista
+                        </dt>
+                        <dd class="task-list-name"></dd>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <dt class="font-medium text-slate-600 dark:text-slate-300 text-xs uppercase tracking-wide">
+                                Creador</dt>
+                            <dd class="task-creator"></dd>
+                        </div>
+                        <div>
+                            <dt class="font-medium text-slate-600 dark:text-slate-300 text-xs uppercase tracking-wide">
+                                Vence</dt>
+                            <dd class="task-vence"></dd>
+                        </div>
+                    </div>
+                    <div>
+                        <dt class="font-medium text-slate-600 dark:text-slate-300 text-xs uppercase tracking-wide">
+                            Responsables</dt>
+                        <dd class="task-responsables"></dd>
+                    </div>
+                    <div>
+                        <dt class="font-medium text-slate-600 dark:text-slate-300 text-xs uppercase tracking-wide">
+                            Detalles</dt>
+                        <dd class="task-detalles whitespace-pre-wrap text-slate-700 dark:text-slate-200 text-[13px]">
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </template>
+
+    <!-- Scripts -->
+    <script src="./js/Sortable.min.js"></script>
+    <script src="./js/modal.js"></script>
+    <script src="./js/scripts.js"></script>
+
+
+</body>
+
+</html>
