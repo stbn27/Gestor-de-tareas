@@ -7,7 +7,15 @@ module.exports = {
     './src/**/*.html',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          DEFAULT: '#15A3D1',
+          600: '#0b7ca1',
+          700: '#05546E',
+        },
+      },
+    },
   },
   plugins: [],
 }
