@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+
+<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>T'BAN — Inicio</title>
+        <link rel="icon" type="image/png" href="./img/icono.png" />
+        <meta name="description" content="Gestor de tareas tipo Trello con drag & drop y modo oscuro." />
+
+        <!-- Pre-aplicar tema para evitar FOUC -->
+        <script src="./js/tema.js"></script>
+
+        <link rel="stylesheet" href="../dist/styles.css" />
+
+        <style>
+        /* Scroll horizontal mejorado */
+        .horizontal-board {scrollbar-color:#6366f1 transparent; scrollbar-width:thin;}
+        .horizontal-board::-webkit-scrollbar{height:10px}
+        .horizontal-board::-webkit-scrollbar-track{background:transparent}
+        .horizontal-board::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#6366f1,#06b6d4);border-radius:6px}
+        .fade-edges{position:relative}
+        .fade-edges:before,.fade-edges:after{content:"";position:absolute;top:0;bottom:14px;width:40px;pointer-events:none;z-index:10}
+        .fade-edges:before{left:0;background:linear-gradient(90deg,var(--fade-bg,#ffffff),transparent)}
+        .fade-edges:after{right:0;background:linear-gradient(270deg,var(--fade-bg,#ffffff),transparent)}
+        .dark .fade-edges:before{--fade-bg:#111827}
+        .dark .fade-edges:after{--fade-bg:#111827}
+        .horizontal-board.is-scrollable:after{content:'← Desplazar →';position:absolute;bottom:0.15rem;left:50%;transform:translateX(-50%);font-size:.65rem;padding:2px 8px;background:rgba(0,0,0,.45);color:#fff;border-radius:9999px;pointer-events:none;letter-spacing:.5px}
+        .dark .horizontal-board.is-scrollable:after{background:rgba(255,255,255,.15)}
+        </style>
+</head>
+
+<body class="min-h-screen h-full bg-gray-50 text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100 flex flex-col overflow-x-hidden">
+        <!-- Header -->
+        <header class="sticky top-0 z-40 border-b border-gray-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-gray-800 dark:bg-gray-900/70">
+                <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+                        <!-- Brand -->
+                        <div class="flex items-center gap-3">
+                                <a href="#" class="flex items-center gap-2 font-bold tracking-tight text-blue-500 hover:text-brand-700 dark:text-blue-300">
+                                        <span class="inline-flex h-8 w-8 items-center justify-center rounded bg-blue-400 text-white">T</span>
+                                        <span class="text-lg">'BAN</span>
+                                </a>
+                                <!-- Nav -->
+                                <nav class="hidden items-center gap-1 sm:flex">
+                                        <!-- Tableros -->
+                                        <div class="relative">
+                                                <button type="button" data-dropdown-toggle="menu-tableros" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:hover:bg-gray-800">
+                                                        <span>Tableros</span>
+                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z" clip-rule="evenodd" />
+                                                        </svg>
+                                                </button>
+                                                <div id="menu-tableros" class="dropdown hidden absolute left-0 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="ver-tableros">Ver todos</button>
+                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="mis-tableros">Tableros propios</button>
+                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="tableros-unidos">Tableros unidos</button>
+                                                </div>
+                                        </div>
+
+                                        <!-- Recientes -->
+                                        <div class="relative">
+                                                <button type="button" data-dropdown-toggle="menu-recientes" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:hover:bg-gray-800">
+                                                        <span>Recientes</span>
+                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z" clip-rule="evenodd" />
+                                                        </svg>
+                                                </button>
+                                                <div id="menu-recientes" class="dropdown hidden absolute left-0 mt-2 w-64 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                                                        <p class="px-3 py-2 text-gray-500 dark:text-gray-400">No hay recientes aún</p>
+                                                </div>
+                                        </div>
+
+                                        <!-- Unirse a un tablero -->
+                                        <button type="button" data-modal-open="modal-unirse" class="rounded-md px-3 py-2 text-sm font-medium text-blue-400 hover:bg-blue/10 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:text-blue-300">Unirse</button>
+
+                                        <!-- Crear tablero -->
+                                        <button type="button" data-modal-open="modal-crear" class="inline-flex items-center gap-2 rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold text-white shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-brand/40">
+                                                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                                                </svg>
+                                                <span>Crear tablero</span>
+                                        </button>
+                                </nav>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex items-center gap-2">
+                                <!-- Theme toggle -->
+                                <button id="theme-toggle" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="Cambiar tema">
+                                        <svg id="icon-sun" class="h-5 w-5 hidden dark:inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 18a6 6 0 100-12 6 6 0 000 12zm0 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-22a1 1 0 011-1h0a1 1 0 110 2h0a1 1 0 01-1-1zM4.22 5.64a1 1 0 010-1.41L3.5 3.5a1 1 0 011.41-1.41l.71.71A1 1 0 014.22 5.64zM19.78 18.36a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zM1 12a1 1 0 011-1h1a1 1 0 110 2H2a1 1 0 01-1-1zm19 0a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM4.22 18.36a1 1 0 011.41 0l.71.71a1 1 0 01-1.41 1.41l-.71-.71a1 1 0 010-1.41zM18.36 4.22a1 1 0 010-1.41l.71-.71A1 1 0 1120.5 3.5l-.71.71a1 1 0 01-1.41 0z" />
+                                        </svg>
+                                        <svg id="icon-moon" class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+                                        </svg>
+                                </button>
+
+                                <!-- Perfil -->
+                                <div class="relative">
+                                        <button type="button" data-dropdown-toggle="menu-perfil" class="inline-flex items-center gap-2 rounded-full border border-gray-200 p-1 pl-2 text-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:border-gray-700 dark:hover:bg-gray-800">
+                                                <span class="hidden text-sm font-medium sm:inline">Perfil</span>
+                                                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand text-white">U</span>
+                                        </button>
+                                        <div id="menu-perfil" class="dropdown hidden absolute right-0 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="editar-perfil">Editar perfil</button>
+                                                <div class="my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="ver-tableros">Ver tableros</button>
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="mis-tableros">Tableros propios</button>
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="tableros-unidos">Tableros unidos</button>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </header>
+
+        <!-- Main Board -->
+        <main class="px-4 py-6 flex-1">
+
+                <div class="mx-auto max-w-7xl mb-4 flex items-center justify-between">
+                        <h1 class="text-xl font-semibold">Mi tablero</h1>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Arrastra tarjetas entre listas</div>
+                </div>
+
+                <!-- Ajuste: el scroll horizontal sólo afecta a las listas -->
+                <section aria-label="Listas del tablero" class="pb-8">
+                        <div class="horizontal-board fade-edges -mx-4 px-4 overflow-x-auto relative" id="board-scroll">
+                                <ul id="lists" class="lists flex items-start gap-4 pb-4 min-w-max">
+
+                                        <!-- List: Por hacer -->
+                                        <li class="list w-80 shrink-0 rounded-lg bg-gray-100 p-3 dark:bg-gray-800 cursor-move" data-list-id="todo">
+                                                <header class="mb-2 flex items-center justify-between rounded-md px-2 py-1 bg-gradient-to-r from-sky-500/70 to-indigo-500/70 text-white">
+                                                        <div class="flex flex-col gap-0.5">
+                                                                <h2 class="font-medium" data-list-title>Por hacer</h2>
+                                                                <p class="text-[11px] leading-snug opacity-90" data-list-desc></p>
+                                                        </div>
+                                                        <div class="flex items-center gap-2">
+                                                                <span class="text-xs font-semibold" data-list-count>3</span>
+                                                                <button class="inline-flex h-7 w-7 items-center justify-center rounded-md hover:bg-white/20" aria-label="Editar lista" data-list-edit="todo">
+                                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M6 10a2 2 0 114 0 2 2 0 01-4 0zm4-7a1 1 0 011-1 7 7 0 017 7 1 1 0 11-2 0 5 5 0 00-5-5 1 1 0 01-1-1zM3 10a1 1 0 11-2 0A9 9 0 0110 1a1 1 0 110 2A7 7 0 003 10zm7 7a1 1 0 011 1 9 9 0 009-9 1 1 0 11-2 0 7 7 0 01-7 7 1 1 0 010 2zM1 11a1 1 0 011 1 7 7 0 007 7 1 1 0 110 2A9 9 0 010 12a1 1 0 011-1z"/></svg>
+                                                                </button>
+                                                        </div>
+                                                </header>
+
+                                                <div class="card-list space-y-3" data-list="todo">
+                                                        <article class="card rounded bg-white p-3 shadow-sm ring-1 ring-gray-200 dark:bg-gray-700 dark:ring-gray-700" draggable="false" data-card-id="c1">Configurar Tailwind y estructura del proyecto</article>
+                                                        <article class="card rounded bg-white p-3 shadow-sm ring-1 ring-gray-200 dark:bg-gray-700 dark:ring-gray-700" draggable="false" data-card-id="c2">Diseñar modelo de datos</article>
+                                                        <article class="card rounded bg-white p-3 shadow-sm ring-1 ring-gray-200 dark:bg-gray-700 dark:ring-gray-700" draggable="false" data-card-id="c3">Crear endpoints en Spring Boot</article>
+                                                </div>
+                                                <button class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-700 ring-1 ring-gray-200 hover:bg-gray-50 dark:bg-gray-700 dark:text-gray-100 dark:ring-gray-700 dark:hover:bg-gray-600" data-add-card="todo">
+                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                                                        </svg>
+                                                        Añadir tarjeta
+                                                </button>
+                                        </li>
+
+                                        <!-- List: En progreso -->
+                                        <li class="list w-80 shrink-0 rounded-lg bg-gray-100 p-3 dark:bg-gray-800" data-list-id="doing">
+                                                <header class="mb-2 flex items-center justify-between rounded-md px-2 py-1 bg-gradient-to-r from-amber-500/70 to-pink-500/70 text-white">
+                                                        <div class="flex flex-col gap-0.5">
+                                                                <h2 class="font-medium" data-list-title>En progreso</h2>
+                                                                <p class="text-[11px] leading-snug opacity-90" data-list-desc></p>
+                                                        </div>
+                                                        <div class="flex items-center gap-2">
+                                                                <span class="text-xs font-semibold" data-list-count>2</span>
+                                                                <button class="inline-flex h-7 w-7 items-center justify-center rounded-md hover:bg-white/20" aria-label="Editar lista" data-list-edit="doing">
+                                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                                                                </button>
+                                                        </div>
+                                                </header>
+                                                <div class="card-list space-y-3" data-list="doing">
+                                                        <article class="card rounded bg-white p-3 shadow-sm ring-1 ring-gray-200 dark:bg-gray-700 dark:ring-gray-700" data-card-id="c4">Maquetar vistas</article>
+                                                        <article class="card rounded bg-white p-3 shadow-sm ring-1 ring-gray-200 dark:bg-gray-700 dark:ring-gray-700" data-card-id="c5">Autenticación</article>
+                                                </div>
+                                                <button class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-700 ring-1 ring-gray-200 hover:bg-gray-50 dark:bg-gray-700 dark:text-gray-100 dark:ring-gray-700 dark:hover:bg-gray-600" data-add-card="doing">
+                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"></svg>
+                                                        Añadir tarjeta
+                                                </button>
+                                        </li>
+
+                                        <!-- List: Hecho -->
+                                        <li class="list w-80 shrink-0 rounded-lg bg-gray-100 p-3 dark:bg-gray-800" data-list-id="done">
+                                                <header class="mb-2 flex items-center justify-between rounded-md px-2 py-1 bg-gradient-to-r from-emerald-500/70 to-teal-500/70 text-white">
+                                                        <div class="flex flex-col gap-0.5">
+                                                                <h2 class="font-medium" data-list-title>Hecho</h2>
+                                                                <p class="text-[11px] leading-snug opacity-90" data-list-desc></p>
+                                                        </div>
+                                                        <div class="flex items-center gap-2">
+                                                                <span class="text-xs font-semibold" data-list-count>0</span>
+                                                                <button class="inline-flex h-7 w-7 items-center justify-center rounded-md hover:bg-white/20" aria-label="Editar lista" data-list-edit="done">
+                                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                                                                </button>
+                                                        </div>
+                                                </header>
+                                                <div class="card-list space-y-3" data-list="done"></div>
+                                                <button class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-700 ring-1 ring-gray-200 hover:bg-gray-50 dark:bg-gray-700 dark:text-gray-100 dark:ring-gray-700 dark:hover:bg-gray-600" data-add-card="done"></button>
+                                        </li>
+
+                                        <!-- Tile: Agregar lista -->
+                                        <li id="add-list-tile" class="w-80 shrink-0 rounded-lg border-2 border-dashed border-gray-300 p-3 text-center text-sm text-gray-500 hover:border-brand hover:text-brand dark:border-gray-700 dark:hover:border-brand-400 cursor-pointer select-none" data-add-list>+ Lista</li>
+                                </ul>
+                        </div>
+                </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-auto border-t max-h-[80px] border-gray-200 bg-white/70 py-4 text-sm text-gray-600 dark:border-gray-800 dark:bg-gray-900/60 dark:text-gray-400">
+                <div class="mx-auto flex max-w-7xl items-center justify-between px-4">
+                        <p>© <span id="year"></span> T'BAN</p>
+                        <a href="#" class="hover:text-brand dark:hover:text-brand-400">Privacidad</a>
+                </div>
+        </footer>
+
+        <!-- Modal: Vista tarjeta -->
+        <div id="modal-card-view" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+                <div class="absolute inset-0 bg-black/50" data-modal-close></div>
+                <div class="relative w-full max-w-lg rounded-xl border border-gray-200 bg-white p-5 shadow-xl dark:border-gray-700 dark:bg-gray-800 space-y-4">
+                        <div class="flex items-start justify-between">
+                                <div>
+                                        <h3 id="view-card-title" class="text-lg font-semibold"></h3>
+                                        <p id="view-card-meta" class="text-xs text-gray-500 dark:text-gray-400 mt-1"></p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                        <button id="card-view-edit" class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-blue-500 text-white hover:bg-blue-600" aria-label="Editar">
+                                                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                                        </button>
+                                        <button class="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700" data-modal-close aria-label="Cerrar">
+                                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                        </button>
+                                </div>
+                        </div>
+                        <div id="view-card-details" class="prose prose-sm dark:prose-invert max-w-none text-sm whitespace-pre-line"></div>
+                </div>
+        </div>
+
+        <!-- Modal: Editar / Crear tarjeta (actualizado placeholder descripción) -->
+        <div id="modal-card" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+                <div class="absolute inset-0 bg-black/50" data-modal-close></div>
+                <div class="relative w-full max-w-lg rounded-xl border border-gray-200 bg-white p-5 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                        <h3 id="modal-card-title" class="text-lg font-semibold mb-4">Nueva actividad</h3>
+                        <form id="card-form" class="space-y-3">
+                                <div>
+                                        <label class="block text-xs font-medium mb-1">Título</label>
+                                        <input id="card-title" type="text" class="w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700" required />
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                                <label class="block text-xs font-medium mb-1">Color</label>
+                                                <input id="card-color" type="color" class="h-9 w-full rounded" />
+                                        </div>
+                                        <div>
+                                                <label class="block text-xs font-medium mb-1">Vencimiento</label>
+                                                <input id="card-due" type="date" class="w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700" />
+                                        </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                                <label class="block text-xs font-medium mb-1">Creado por</label>
+                                                <input id="card-created-by" type="text" class="w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700" />
+                                        </div>
+                                        <div>
+                                                <label class="block text-xs font-medium mb-1">Asignado a</label>
+                                                <input id="card-assigned-to" type="text" class="w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700" />
+                                        </div>
+                                </div>
+                                <div>
+                                        <label class="block text-xs font-medium mb-1">Detalles / Descripción</label>
+                                        <textarea id="card-details" rows="4" placeholder="Describe la actividad, objetivos, notas..." class="w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700"></textarea>
+                                </div>
+                                <div class="flex justify-end gap-2 pt-2">
+                                        <button type="button" data-modal-close class="rounded-md px-3 py-1.5 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">Cancelar</button>
+                                        <button type="submit" class="rounded-md px-3 py-1.5 text-sm bg-blue-500 text-white hover:bg-blue-600">Guardar</button>
+                                </div>
+                        </form>
+                </div>
+        </div>
+
+        <!-- Modal: Crear lista (nombre, descripción, degradado, opacidad) -->
+        <div id="modal-list" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+                <div class="absolute inset-0 bg-black/50" data-modal-close></div>
+                <div class="relative w-full max-w-md rounded-xl border border-gray-200 bg-white p-5 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                        <h3 class="text-lg font-semibold mb-4">Nueva lista</h3>
+                        <div class="space-y-3">
+                                <div>
+                                        <label class="block text-xs font-medium mb-1">Nombre</label>
+                                        <input id="list-title" type="text" class="w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700" required />
+                                </div>
+                                <div>
+                                        <label class="block text-xs font-medium mb-1">Descripción (opcional)</label>
+                                        <textarea id="list-desc" rows="2" class="w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700" placeholder="Breve descripción"></textarea>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                                <label class="block text-xs font-medium mb-1">Color 1</label>
+                                                <input id="list-color1" type="color" class="h-9 w-full rounded" />
+                                        </div>
+                                        <div>
+                                                <label class="block text-xs font-medium mb-1">Color 2</label>
+                                                <input id="list-color2" type="color" class="h-9 w-full rounded" />
+                                        </div>
+                                </div>
+                                <div>
+                                        <label class="block text-xs font-medium mb-1">Opacidad header (0.05 - 0.9)</label>
+                                        <input id="list-opacity" type="number" min="0.05" max="0.9" step="0.05" value="0.7" class="w-32 rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700" />
+                                </div>
+                                <div id="list-presets" class="flex flex-wrap gap-2 text-xs">
+                                        <button type="button" data-preset="#0ea5e9,#6366f1" class="px-2 py-1 rounded bg-gradient-to-r from-sky-500 to-indigo-500 text-white">Azul</button>
+                                        <button type="button" data-preset="#f59e0b,#ec4899" class="px-2 py-1 rounded bg-gradient-to-r from-amber-500 to-pink-500 text-white">Sunset</button>
+                                        <button type="button" data-preset="#10b981,#14b8a6" class="px-2 py-1 rounded bg-gradient-to-r from-emerald-500 to-teal-500 text-white">Verde</button>
+                                </div>
+                                <div class="flex justify-end gap-2 pt-2">
+                                        <button type="button" data-modal-close class="rounded-md px-3 py-1.5 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">Cancelar</button>
+                                        <button id="btn-list-create" type="button" class="rounded-md px-3 py-1.5 text-sm bg-blue-500 text-white hover:bg-blue-600">Crear</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <!-- Modal: Editar lista ampliado -->
+        <div id="modal-list-edit" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+                <div class="absolute inset-0 bg-black/50" data-modal-close></div>
+                <div class="relative w-full max-w-md rounded-xl border border-gray-200 bg-white p-5 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                        <h3 class="text-lg font-semibold mb-4">Editar lista</h3>
+                        <form id="list-edit-form" class="space-y-3">
+                                <input type="hidden" id="list-edit-id" />
+                                <div>
+                                        <label class="block text-xs font-medium mb-1">Nombre</label>
+                                        <input id="list-edit-title" type="text" class="w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700" required />
+                                </div>
+                                <div>
+                                        <label class="block text-xs font-medium mb-1">Descripción</label>
+                                        <textarea id="list-edit-desc" rows="2" class="w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700" placeholder="Breve descripción"></textarea>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                                <label class="block text-xs font-medium mb-1">Color 1</label>
+                                                <input id="list-edit-color1" type="color" class="h-9 w-full rounded" />
+                                        </div>
+                                        <div>
+                                                <label class="block text-xs font-medium mb-1">Color 2</label>
+                                                <input id="list-edit-color2" type="color" class="h-9 w-full rounded" />
+                                        </div>
+                                </div>
+                                <div>
+                                        <label class="block text-xs font-medium mb-1">Opacidad header</label>
+                                        <input id="list-edit-opacity" type="number" min="0.05" max="0.9" step="0.05" class="w-32 rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-700" />
+                                </div>
+                                <div class="flex items-center gap-2">
+                                        <input id="list-edit-locked" type="checkbox" class="h-4 w-4" />
+                                        <label for="list-edit-locked" class="text-xs">Bloquear lista (no permite añadir ni mover tarjetas)</label>
+                                </div>
+                                <div class="flex justify-between items-center pt-3">
+                                        <button type="button" id="btn-list-delete" class="text-xs text-red-600 hover:underline">Eliminar lista</button>
+                                        <div class="flex gap-2">
+                                                <button type="button" data-modal-close class="rounded-md px-3 py-1.5 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">Cancelar</button>
+                                                <button type="submit" class="rounded-md px-3 py-1.5 text-sm bg-blue-500 text-white hover:bg-blue-600">Guardar</button>
+                                        </div>
+                                </div>
+                        </form>
+                </div>
+        </div>
+
+        <!-- Modal: Unirse a tablero -->
+        <div id="modal-unirse" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+                <div class="absolute inset-0 bg-black/50" data-modal-close></div>
+                <div class="relative w-full max-w-md rounded-xl border border-gray-200 bg-white p-5 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                        <header class="mb-3 flex items-start justify-between">
+                                <h3 class="text-lg font-semibold">Unirse a un tablero</h3>
+                                <button class="rounded p-1 hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-700" data-modal-close aria-label="Cerrar">
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M10 8.586l4.243-4.243a1 1 0 111.414 1.414L11.414 10l4.243 4.243a1 1 0 01-1.414 1.414L10 11.414l-4.243 4.243a1 1 0 01-1.414-1.414L8.586 10 4.343 5.757A1 1 0 115.757 4.343L10 8.586z" clip-rule="evenodd" />
+                                        </svg>
+                                </button>
+                        </header>
+                        <div class="space-y-3">
+                                <label class="block text-sm">
+                                        <span class="mb-1 block text-gray-600 dark:text-gray-300">Código del tablero</span>
+                                        <input id="join-code" type="text" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-gray-600 dark:bg-gray-900" placeholder="Ej. ABCD-1234" />
+                                </label>
+                                <div class="flex justify-end gap-2">
+                                        <button class="rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700" data-modal-close>Cancelar</button>
+                                        <button id="btn-unirse" class="rounded-md bg-brand px-3 py-2 text-sm font-semibold text-white hover:bg-brand-600">Unirse</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <!-- Modal: Crear tablero -->
+        <div id="modal-crear" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+                <div class="absolute inset-0 bg-black/50" data-modal-close></div>
+                <div class="relative w-full max-w-md rounded-xl border border-gray-200 bg-white p-5 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                        <header class="mb-3 flex items-start justify-between">
+                                <h3 class="text-lg font-semibold">Crear tablero</h3>
+                                <button class="rounded p-1 hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-700" data-modal-close aria-label="Cerrar">
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M10 8.586l4.243-4.243a1 1 0 111.414 1.414L11.414 10l4.243 4.243a1 1 0 01-1.414 1.414L10 11.414l-4.243 4.243a1 1 0 01-1.414-1.414L8.586 10 4.343 5.757A1 1 0 115.757 4.343L10 8.586z" clip-rule="evenodd" />
+                                </button>
+                        </header>
+                        <div class="space-y-3">
+                                <label class="block text-sm">
+                                        <span class="mb-1 block text-gray-600 dark:text-gray-300">Nombre del tablero</span>
+                                        <input id="create-name" type="text" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-gray-600 dark:bg-gray-900" placeholder="Ej. Proyecto X" />
+                                </label>
+                                <div class="flex justify-end gap-2">
+                                        <button class="rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700" data-modal-close>Cancelar</button>
+                                        <button id="btn-crear" class="rounded-md bg-brand px-3 py-2 text-sm font-semibold text-white hover:bg-brand-600">Crear</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <!-- Modal: Crear/Editar actividad (tarjeta) -->
+        <div id="modal-card" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+                <div class="absolute inset-0 bg-black/50" data-modal-close></div>
+                <div class="relative w-full max-w-lg rounded-xl border border-gray-200 bg-white p-5 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                        <header class="mb-4 flex items-start justify-between">
+                                <h3 class="text-lg font-semibold" id="modal-card-title">Nueva actividad</h3>
+                                <button class="rounded p-1 hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-700" data-modal-close aria-label="Cerrar">
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 8.586l4.243-4.243a1 1 0 111.414 1.414L11.414 10l4.243 4.243a1 1 0 01-1.414 1.414L10 11.414l-4.243 4.243a1 1 0 01-1.414-1.414L8.586 10 4.343 5.757A1 1 0 115.757 4.343L10 8.586z" clip-rule="evenodd"/></svg>
+                                </button>
+                        </header>
+
+                        <form id="card-form" class="space-y-4" autocomplete="off">
+                                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                        <label class="block text-sm sm:col-span-2">
+                                                <span class="mb-1 block text-gray-700 dark:text-gray-300">Título</span>
+                                                <input id="card-title" required type="text" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-gray-600 dark:bg-gray-900" placeholder="Descripción breve" />
+                                        </label>
+
+                                        <label class="block text-sm">
+                                                <span class="mb-1 block text-gray-700 dark:text-gray-300">Color</span>
+                                                <input id="card-color" type="color" value="#ffffff" class="h-10 w-full cursor-pointer rounded-lg border border-gray-300 bg-white p-1 dark:border-gray-600 dark:bg-gray-900" />
+                                        </label>
+
+                                        <label class="block text-sm">
+                                                <span class="mb-1 block text-gray-700 dark:text-gray-300">Fecha límite</span>
+                                                <input id="card-due" type="date" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-gray-600 dark:bg-gray-900" />
+                                        </label>
+
+                                        <label class="block text-sm">
+                                                <span class="mb-1 block text-gray-700 dark:text-gray-300">Creado por</span>
+                                                <input id="card-created-by" type="text" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-gray-600 dark:bg-gray-900" placeholder="Tu nombre" />
+                                        </label>
+
+                                        <label class="block text-sm">
+                                                <span class="mb-1 block text-gray-700 dark:text-gray-300">Asignado a</span>
+                                                <input id="card-assigned-to" type="text" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-gray-600 dark:bg-gray-900" placeholder="Persona responsable" />
+                                        </label>
+
+                                        <label class="block text-sm sm:col-span-2">
+                                                <span class="mb-1 block text-gray-700 dark:text-gray-300">Detalles</span>
+                                                <textarea id="card-details" rows="4" class="w-full resize-y rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-gray-600 dark:bg-gray-900" placeholder="Información adicional, checklist, enlaces, etc."></textarea>
+                                        </label>
+                                </div>
+
+                                <div class="mt-2 flex justify-end gap-2">
+                                        <button type="button" class="rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700" data-modal-close>Cancelar</button>
+                                        <button id="btn-card-save" type="submit" class="rounded-md bg-brand px-3 py-2 text-sm font-semibold text-white hover:bg-brand-600">Guardar</button>
+                                </div>
+                        </form>
+                </div>
+        </div>
+
+        <!-- Modal: Acciones de tarjeta -->
+        <div id="modal-card-actions" class="modal fixed inset-0 z-50 hidden items-end justify-center sm:items-center">
+                <div class="absolute inset-0 bg-black/50" data-modal-close></div>
+                <div class="relative w-full max-w-sm rounded-t-xl border border-gray-200 bg-white p-2 shadow-xl dark:border-gray-700 dark:bg-gray-800 sm:rounded-xl">
+                        <header class="px-2 py-2">
+                                <h3 class="text-base font-semibold">Acciones</h3>
+                        </header>
+                        <div class="divide-y divide-gray-200 text-sm dark:divide-gray-700">
+                                <button class="block w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="card-move">Mover a…</button>
+                                <button class="block w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="card-edit">Editar</button>
+                                <button class="block w-full px-4 py-3 text-left text-red-600 hover:bg-gray-100 dark:text-red-400 dark:hover:bg-gray-700" data-action="card-delete">Eliminar</button>
+                                <button class="block w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-modal-close>Cancelar</button>
+                        </div>
+                </div>
+        </div>
+
+        <!-- Modal: Mover tarjeta -->
+        <div id="modal-move" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+                <div class="absolute inset-0 bg-black/50" data-modal-close></div>
+                <div class="relative w-full max-w-sm rounded-xl border border-gray-200 bg-white p-5 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                        <header class="mb-3 flex items-start justify-between">
+                                <h3 class="text-lg font-semibold">Mover a</h3>
+                                <button class="rounded p-1 hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-700" data-modal-close aria-label="Cerrar">
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 8.586l4.243-4.243a1 1 0 111.414 1.414L11.414 10l4.243 4.243a1 1 0 01-1.414 1.414L10 11.414l-4.243 4.243a1 1 0 01-1.414-1.414L8.586 10 4.343 5.757A1 1 0 115.757 4.343L10 8.586z" clip-rule="evenodd"/></svg>
+                                </button>
+                        </header>
+                        <div id="move-list-options" class="space-y-2"></div>
+                        <div class="mt-4 flex justify-end gap-2">
+                                <button class="rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700" data-modal-close>Cancelar</button>
+                                <button id="btn-move-confirm" class="rounded-md bg-brand px-3 py-2 text-sm font-semibold text-white hover:bg-brand-600">Mover</button>
+                        </div>
+                </div>
+        </div>
+
+        <!-- Modal: Crear lista -->
+        <div id="modal-list" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+                <div class="absolute inset-0 bg-black/50" data-modal-close></div>
+                <div class="relative w-full max-w-md rounded-xl border border-gray-200 bg-white p-5 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                        <header class="mb-3 flex items-start justify-between">
+                                <h3 class="text-lg font-semibold">Nueva lista</h3>
+                                <button class="rounded p-1 hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-700" data-modal-close aria-label="Cerrar">
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 8.586l4.243-4.243a1 1 0 111.414 1.414L11.414 10l4.243 4.243a1 1 0 01-1.414 1.414L10 11.414l-4.243 4.243a1 1 0 01-1.414-1.414L8.586 10 4.343 5.757A1 1 0 115.757 4.343L10 8.586z" clip-rule="evenodd"/></svg>
+                                </button>
+                        </header>
+                        <div class="space-y-3">
+                                <label class="block text-sm">
+                                        <span class="mb-1 block text-gray-700 dark:text-gray-300">Título</span>
+                                        <input id="list-title" type="text" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-gray-600 dark:bg-gray-900" placeholder="Ej. Backlog" />
+                                </label>
+                                <div class="grid grid-cols-2 gap-3">
+                                        <label class="block text-sm">
+                                                <span class="mb-1 block text-gray-700 dark:text-gray-300">Color 1</span>
+                                                <input id="list-color1" type="color" value="#60a5fa" class="h-10 w-full cursor-pointer rounded-lg border border-gray-300 bg-white p-1 dark:border-gray-600 dark:bg-gray-900" />
+                                        </label>
+                                        <label class="block text-sm">
+                                                <span class="mb-1 block text-gray-700 dark:text-gray-300">Color 2</span>
+                                                <input id="list-color2" type="color" value="#a78bfa" class="h-10 w-full cursor-pointer rounded-lg border border-gray-300 bg-white p-1 dark:border-gray-600 dark:bg-gray-900" />
+                                        </label>
+                                </div>
+                                <label class="block text-sm">
+                                        <span class="mb-1 block text-gray-700 dark:text-gray-300">Opacidad</span>
+                                        <input id="list-opacity" type="range" min="0" max="0.5" step="0.05" value="0.15" class="w-full" />
+                                </label>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Presets</div>
+                                <div class="flex flex-wrap gap-2" id="list-presets">
+                                        <button type="button" class="rounded px-2 py-1 ring-1 ring-gray-300 text-xs" data-preset="#60a5fa,#a78bfa">Azul → Violeta</button>
+                                        <button type="button" class="rounded px-2 py-1 ring-1 ring-gray-300 text-xs" data-preset="#34d399,#10b981">Verde → Esmeralda</button>
+                                        <button type="button" class="rounded px-2 py-1 ring-1 ring-gray-300 text-xs" data-preset="#fbbf24,#f59e0b">Ámbar → Naranja</button>
+                                        <button type="button" class="rounded px-2 py-1 ring-1 ring-gray-300 text-xs" data-preset="#f472b6,#fb7185">Rosa → Rojo</button>
+                                </div>
+                                <div class="flex justify-end gap-2">
+                                        <button class="rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700" data-modal-close>Cancelar</button>
+                                        <button id="btn-list-create" class="rounded-md bg-brand px-3 py-2 text-sm font-semibold text-white hover:bg-brand-600">Crear lista</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <!-- SortableJS -->
+        <script src="./js/Sortable.min.js"></script>
+        <!-- App JS -->
+        <script src="./js/drap-drop.js"></script>
+
+        <script>
+                document.getElementById('year').textContent = new Date().getFullYear();
+        </script>
+</body>
+
+</html>
