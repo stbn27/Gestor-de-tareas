@@ -68,8 +68,11 @@
         const etiquetas = a.etiquetas ? `<ul class="flex flex-wrap gap-1 mt-1">${a.etiquetas.map(t => `<li class="text-[10px] tracking-wide px-2 py-0.5 rounded-full bg-brand text-white">${t}</li>`).join('')}</ul>` : '';
         return `<article data-id-act="${a.id}" data-estado="${estado}" class="kanban-card cursor-pointer relative group bg-[${a.background || 'var(--card-bg)'}] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md shadow hover:shadow-md transition shadow-slate-200/60 dark:shadow-slate-900/40 p-3 flex flex-col gap-2 text-slate-700 dark:text-slate-200 text-sm" draggable="true" role="listitem">
           <div class="mb-2 flex flex-wrap justify-between w-full">
-        ${a.prioridad ? `<span class="px-1.5 py-0.3 text-xs rounded border ${prioridadClase(a.prioridad)}">${a.prioridad}</span>` : ''}
-        ${a.fecha_creacion ? `<span class="px-1.5 text-xs py-0.5 text-slate-500">⏱ ${a.fecha_creacion}</span>` : ''}
+          <div class="flex-1">
+          ${a.prioridad ? `<span class="px-1.5 py-0.3 text-xs rounded border ${prioridadClase(a.prioridad)}">${a.prioridad}</span>` : ''}
+          ${a.fecha_creacion ? `<span class="ms-auto px-1.5 text-xs py-0.5 text-slate-500">⏱ ${a.fecha_creacion}</span>` : ''}
+          </div>
+          <span><button class="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-200">Opcion</button></span>
           </div>
           <h3 class="font-semibold leading-tight text-[13px]">${a.titulo}</h3>
           <p class="text-xs leading-snug text-slate-500 dark:text-slate-300">${a.descripcion || ''}</p>

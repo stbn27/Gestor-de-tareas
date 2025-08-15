@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .modal-panel {
+    @apply relative max-w-2xl w-full mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-lg max-h-[90vh] overflow-y-auto overscroll-contain
+           [&::-webkit-scrollbar]:w-2
+           [&::-webkit-scrollbar-track]:bg-gray-100
+           [&::-webkit-scrollbar-thumb]:bg-gray-300
+           dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+           dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500;
+  }
+
+  .container-modal {
+    @apply fixed inset-0 flex items-center justify-center;
+  }
+}
+
