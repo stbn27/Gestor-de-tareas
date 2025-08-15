@@ -1,43 +1,60 @@
 {
     "Nueva":{ 
+        "id_card":"1",
         "creacion":"27-07-2024",
         "modificacion":"27-07-2025",
         "descripcion":"Actividades de desarrollo de software",
         "estado":"Nueva",
+        "fondo-header":"#ffa1ad",
         "actividades":[
             {
+                "id": 1,
                 "titulo": "Crear una base de datos",
                 "descripcion": "Crear la base de datos para el proyecto",
                 "responsable": "Juan Perez",
-                "fecha_limite": "10-08-2024",
+                "fecha_creacion": "01-08-2025",
+                "fecha_limite": "10-08-2025",
                 "asignado_a": "Maria Lopez",
                 "etiquetas": ["base de datos", "seguridad"],
+                "background":"#e0f7fa",
+                "prioridad": "Alta",
                 "comentarios": [
                     {
                         "Pedro":"Revisar la documentación de OAuth",
-                        "Ana":"Configurar el servidor de autenticación"
+                        "Ana":"Configurar el servidor de autenticación",
+                        "Alberto":"Soy insano"
                     }
-                ]
+                ],
+                "detalles":"Crear una base de datos relacional para almacenar la información del proyecto"
             },
             {
+                "id": 2,
                 "titulo": "Crear un diagrama de entidad-relación",
                 "descripcion": "Diseñar el diagrama de entidad-relación",
                 "responsable": "Maria Lopez",
-                "fecha_limite": "15-08-2024"
+                "fecha_creacion": "05-08-2025",
+                "fecha_limite": "15-08-2026",
+                "asignado_a": "Pedro Alvarez",
+                "background":"#e0f7fa"
             },
             {
+                "id": 3,
                 "titulo": "Definir requerimientos del proyecto",
                 "descripcion": "Reunir y documentar los requerimientos",
                 "responsable": "Carlos Gomez",
-                "fecha_limite": "20-08-2024"
+                "fecha_limite": "20-08-2024",
+                "background":"#e0f7fa"
             },
             {
+                "id": 4,
                 "titulo": "Diseñar la interfaz de usuario",
                 "descripcion": "Crear prototipos de la interfaz de usuario",
                 "responsable": "Laura Martinez",
+                "fecha_creacion": "10-08-2024",
                 "fecha_limite": "25-08-2024",
                 "asignado_a": "Ana Torres",
                 "etiquetas": ["UI", "UX"],
+                "background":"#e0f7fa",
                 "comentarios": [
                     {"Juan":"Revisar los prototipos con el equipo",
                         "Maria":"Asegurarse de que la interfaz sea intuitiva"
@@ -47,12 +64,15 @@
         ]
     },
     "En progreso": {
+        "id_card":"2",
         "creacion":"27-07-2025",
         "modificacion":"27-07-2025",
         "descripcion":"Avances en el desarrollo del software",
         "estado":"En progreso",
+        "fondo-header":"#d0e0f0",
         "actividades": [
             {
+                "id": 5,
                 "titulo": "Implementar autenticación de usuarios",
                 "creado_por": "Juan Perez",
                 "fecha_creacion": "27-07-2025",
@@ -60,6 +80,7 @@
                 "prioridad": "Alta",
                 "asignado_a": "Maria Lopez",
                 "etiquetas": ["backend", "seguridad"],
+                "background":"#d0e0f0",
                 "comentarios": [
                     {
                         "Pedro":"Revisar la documentación de OAuth",
@@ -69,12 +90,15 @@
                 "descripcion": "Implementar un sistema de autenticación seguro"
             },
             {
+                "id": 6,
                 "titulo": "Desarrollar la API REST",
                 "creado_por": "Maria Perez",
+                "fecha_limite": "30-09-2025",
                 "fecha_creacion": "22-05-2025",
                 "prioridad": "Baja",
                 "asignado_a": "Anastacia Flores",
                 "etiquetas": ["API", "seguridad"],
+                "background":"#d0e0f0",
                 "comentarios": [
                     {
                         "Juan":"Asegurate de que la API cumpla con los estándares REST",
@@ -84,6 +108,7 @@
                 "descripcion": "Desarrollar una API RESTful para el proyecto"
             },
             {
+                "id": 7,
                 "titulo": "Integrar el frontend con el backend",
                 "creado_por": "Carlos Gomez",
                 "fecha_creacion": "15-06-2025",
@@ -91,6 +116,7 @@
                 "prioridad": "Media",
                 "asignado_a": "Laura Martinez",
                 "etiquetas": ["frontend", "integración"],
+                "background":"#d0e0f0",
                 "comentarios": [
                     {
                         "Ana":"Asegurarse de que la comunicación entre frontend y backend sea fluida",
@@ -102,18 +128,22 @@
         ]
     },
     "En revisión": {
+        "id_card":"3",
         "creacion": "28-07-2025",
         "modificacion": "28-07-2025",
         "descripcion": "Actividades en proceso de revisión",
         "estado": "En revisión",
+        "fondo-header": "#f0e0d0",
         "actividades": [
             {
+                "id": 8,
                 "titulo": "Revisar el código fuente",
                 "descripcion": "Revisar el código fuente para asegurar calidad y buenas prácticas",
                 "responsable": "Pedro Alvarez",
                 "fecha_limite": "30-08-2025",
                 "asignado_a": "Ana Torres",
                 "etiquetas": ["revisión", "código"],
+                "background": "#f0e0d0",
                 "comentarios": [
                     {
                         "Laura":"Verificar convenciones de nombres",
@@ -122,12 +152,14 @@
                 ]
             },
             {
+                "id": 9,
                 "titulo": "Testear funcionalidades principales",
                 "descripcion": "Realizar pruebas sobre las funcionalidades principales del sistema",
                 "responsable": "Ana Torres",
                 "fecha_limite": "02-09-2025",
                 "asignado_a": "Mario Ruiz",
                 "etiquetas": ["testing", "QA"],
+                "background": "#f0e0d0",
                 "comentarios": [
                     {
                         "Juan":"Asegurarse de cubrir todos los casos de uso",
@@ -136,12 +168,14 @@
                 ]
             },
             {
+                "id": 10,
                 "titulo": "Corregir errores reportados",
                 "descripcion": "Corregir los errores encontrados durante la revisión y pruebas",
                 "responsable": "Mario Ruiz",
                 "fecha_limite": "05-09-2025",
                 "asignado_a": "Pedro Alvarez",
                 "etiquetas": ["bugs", "corrección"],
+                "background": "#f0e0d0",
                 "comentarios": [
                     {
                         "Ana":"Priorizar los errores críticos",
@@ -152,18 +186,22 @@
         ]
     },
     "Completada": {
+        "id_card":"4",
         "creacion": "10-07-2025",
         "modificacion": "27-07-2025",
         "descripcion": "Actividades finalizadas del proyecto",
         "estado": "Completada",
+        "fondo-header": "#d0f0d0",
         "actividades": [
             {
+                "id": 11,
                 "titulo": "Configurar el entorno de desarrollo",
                 "descripcion": "Preparar y configurar el entorno de desarrollo para el equipo",
                 "responsable": "Laura Martinez",
                 "fecha_limite": "15-07-2025",
                 "asignado_a": "Carlos Gomez",
                 "etiquetas": ["configuración", "entorno"],
+                "background": "#d0f0d0",
                 "comentarios": [
                     {
                         "Pedro":"Verificar compatibilidad de versiones",
@@ -172,12 +210,14 @@
                 ]
             },
             {
+                "id": 12,
                 "titulo": "Crear repositorio en GitHub",
                 "descripcion": "Crear y configurar el repositorio principal del proyecto en GitHub",
                 "responsable": "Carlos Gomez",
                 "fecha_limite": "16-07-2025",
                 "asignado_a": "Laura Martinez",
                 "etiquetas": ["repositorio", "GitHub"],
+                "background": "#d0f0d0",
                 "comentarios": [
                     {
                         "Juan":"Agregar archivo README",
@@ -186,12 +226,14 @@
                 ]
             },
             {
+                "id": 13,
                 "titulo": "Documentar el proyecto",
                 "descripcion": "Elaborar la documentación técnica y de usuario del proyecto",
                 "responsable": "Maria Lopez",
                 "fecha_limite": "20-07-2025",
                 "asignado_a": "Juan Perez",
                 "etiquetas": ["documentación", "manual"],
+                "background": "#d0f0d0",
                 "comentarios": [
                     {
                         "Laura":"Revisar ortografía y formato",
@@ -202,18 +244,22 @@
         ]
     },
     "Bloqueada": {
+        "id_card":"5",
         "creacion": "20-07-2025",
         "modificacion": "27-07-2025",
         "descripcion": "Actividades actualmente bloqueadas",
         "estado": "Bloqueada",
+        "fondo-header": "#f0d0d0",
         "actividades": [
             {
+                "id": 14,
                 "titulo": "Creacion del dockerfile",
                 "descripcion": "Crear el archivo Dockerfile para la contenedorización del proyecto",
                 "responsable": "Pedro Alvarez",
                 "fecha_limite": "30-07-2025",
                 "asignado_a": "Ana Torres",
                 "etiquetas": ["docker", "devops"],
+                "background": "#f0d0d0",
                 "comentarios": [
                     {
                         "Carlos":"Verificar dependencias necesarias",
@@ -222,12 +268,14 @@
                 ]
             },
             {
+                "id": 15,
                 "titulo": "Cambiar la estructura del proyecto",
                 "descripcion": "Modificar la estructura de carpetas y archivos del proyecto según nuevas necesidades",
                 "responsable": "Ana Torres",
                 "fecha_limite": "05-08-2025",
                 "asignado_a": "Pedro Alvarez",
                 "etiquetas": ["estructura", "refactor"],
+                "background": "#f0d0d0",
                 "comentarios": [
                     {
                         "Maria":"Actualizar rutas en los imports",

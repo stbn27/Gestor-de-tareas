@@ -1,0 +1,35 @@
+/* personalizado.css (refactor Tailwind) */
+:root {
+  --card-bg: #ffffff;
+}
+:root.dark { --card-bg: #1e293b; }
+
+/* Mantener body overflow y full height control si hiciera falta extras */
+body { overscroll-behavior: none; }
+
+/* Drag efectos (necesario porque Sortable usa clases) */
+.drag-ghost { opacity:.4; }
+.sortable-chosen { transform:rotate(1deg); }
+.sortable-ghost { opacity:.3; }
+
+/* Scrollbars personalizados solo donde sea necesario */
+#kanban::-webkit-scrollbar { height:12px; }
+#kanban::-webkit-scrollbar-track { background: transparent; }
+#kanban::-webkit-scrollbar-thumb { background: rgba(100,116,139,.4); border-radius:6px; }
+#kanban { scrollbar-color: rgba(100,116,139,.4) transparent; }
+
+.kanban-col .col-body::-webkit-scrollbar { width:8px; }
+.kanban-col .col-body::-webkit-scrollbar-thumb { background: rgba(100,116,139,.35); border-radius:4px; }
+.kanban-col .col-body { scrollbar-color: rgba(100,116,139,.35) transparent; }
+
+/* Transition helpers */
+.kanban-card { transition: box-shadow .2s, transform .15s; }
+.kanban-card:hover { box-shadow: 0 4px 8px -2px rgba(0,0,0,.12), 0 10px 20px -4px rgba(0,0,0,.10); }
+
+/* Util si algunos colores vienen en el JSON (col-header background) y queremos contraste */
+.col-header { backdrop-filter: blur(4px); }
+
+/* Pequeñas utilidades condicionales (podrían moverse a @layer si generas Tailwind again) */
+@media (max-width: 640px){
+  .kanban-col { width: 16rem; }
+}
