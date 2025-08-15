@@ -9,10 +9,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          DEFAULT: '#15A3D1',
-          600: '#0b7ca1',
-          700: '#05546E',
+        primary: {
+          DEFAULT: '#12B8B2',
+          600: '#0F9590',
+          700: '#0B6B68',
         },
       },
     },

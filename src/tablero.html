@@ -1,29 +1,120 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles • T'BAn</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>T'BAN • Detalles</title>
+        <link rel="icon" type="image/png" href="./img/icono.png" />
 
+        <meta name="description" content="Gestor de tareas" />
 
-    <link rel="stylesheet" href="../dist/styles.css">
-    <script src="../js/tema.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="./js/tema.js"></script>
+        <link rel="stylesheet" href="../dist/styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
-<body>
+<body class="min-h-screen h-full bg-gray-50 text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100 flex flex-col overflow-x-hidden">
+        <!-- Header -->
+        <header class="sticky top-0 z-40 border-b border-gray-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-gray-800 dark:bg-gray-900/70">
+                <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+                        <!-- Brand -->
+                        <div class="flex items-center gap-3">
+                                <a href="#" class="flex items-center gap-2 font-bold tracking-tight text-primary hover:text-brand-700 dark:text-primary">
+                                        <span class="inline-flex h-8 w-8 items-center justify-center rounded bg-primary text-white">T</span>
+                                        <span class="text-lg">'BAN</span>
+                                </a>
+                                <!-- Nav -->
+                                <nav class="hidden items-center gap-1 sm:flex">
+                                        <!-- Tableros -->
+                                        <div class="relative">
+                                                <button type="button" data-dropdown-toggle="menu-tableros" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:hover:bg-gray-800">
+                                                        <span>Tableros</span>
+                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z" clip-rule="evenodd" />
+                                                        </svg>
+                                                </button>
+                                                <div id="menu-tableros" class="dropdown hidden absolute left-0 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="ver-tableros">Ver todos</button>
+                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="mis-tableros">Tableros propios</button>
+                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="tableros-unidos">Tableros unidos</button>
+                                                </div>
+                                        </div>
 
-    <header></header>
+                                        <!-- Recientes -->
+                                        <div class="relative">
+                                                <button type="button" data-dropdown-toggle="menu-recientes" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:hover:bg-gray-800">
+                                                        <span>Recientes</span>
+                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z" clip-rule="evenodd" />
+                                                        </svg>
+                                                </button>
+                                                <div id="menu-recientes" class="dropdown hidden absolute left-0 mt-2 w-64 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                                                        <p class="px-3 py-2 text-gray-500 dark:text-gray-400">No hay recientes aún</p>
+                                                </div>
+                                        </div>
 
-    <main></main>
+                                        <!-- Unirse a un tablero -->
+                                        <button type="button" data-modal-open="modal-unirse" class="rounded-md px-3 py-2 text-sm font-medium text-primary-600 hover:bg-blue/10 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:text-primary">Unirse</button>
 
-    <footer></footer>
+                                        <!-- Crear tablero -->
+                                        <button type="button" data-modal-open="modal-crear" class="inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-brand/40">
+                                                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                                                </svg>
+                                                <span>Crear tablero</span>
+                                        </button>
+                                </nav>
+                        </div>
 
-    <script src="./js/toggle-tema.js"></script>
-    
+                        <!-- Actions -->
+                        <div class="flex items-center gap-2">
+                                <!-- Theme toggle -->
+                                <button id="theme-toggle" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="Cambiar tema">
+                                        <svg id="icon-sun" class="h-5 w-5 hidden dark:inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 18a6 6 0 100-12 6 6 0 000 12zm0 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-22a1 1 0 011-1h0a1 1 0 110 2h0a1 1 0 01-1-1zM4.22 5.64a1 1 0 010-1.41L3.5 3.5a1 1 0 011.41-1.41l.71.71A1 1 0 014.22 5.64zM19.78 18.36a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zM1 12a1 1 0 011-1h1a1 1 0 110 2H2a1 1 0 01-1-1zm19 0a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM4.22 18.36a1 1 0 011.41 0l.71.71a1 1 0 01-1.41 1.41l-.71-.71a1 1 0 010-1.41zM18.36 4.22a1 1 0 010-1.41l.71-.71A1 1 0 1120.5 3.5l-.71.71a1 1 0 01-1.41 0z" />
+                                        </svg>
+                                        <svg id="icon-moon" class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+                                        </svg>
+                                </button>
+
+                                <!-- Perfil -->
+                                <div class="relative">
+                                        <button type="button" data-dropdown-toggle="menu-perfil" class="inline-flex items-center gap-2 rounded-full border border-gray-200 p-1 pl-2 text-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:border-gray-700 dark:hover:bg-gray-800">
+                                                <span class="hidden text-sm font-medium sm:inline">Perfil</span>
+                                                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand text-white">U</span>
+                                        </button>
+                                        <div id="menu-perfil" class="dropdown hidden absolute right-0 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="editar-perfil">Editar perfil</button>
+                                                <div class="my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="ver-tableros">Ver tableros</button>
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="mis-tableros">Tableros propios</button>
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="tableros-unidos">Tableros unidos</button>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </header>
+
+
+        <!-- Footer -->
+        <footer class="mt-auto border-t max-h-[80px] border-gray-200 bg-white/70 py-4 text-sm text-gray-600 dark:border-gray-800 dark:bg-gray-900/60 dark:text-gray-400">
+                <div class="mx-auto flex max-w-7xl items-center justify-between px-4">
+                        <p>© <span id="year"></span> T'BAN</p>
+                        <a href="#" class="hover:text-brand dark:hover:text-brand-400">Privacidad</a>
+                </div>
+        </footer>
+
+
+        <!-- SortableJS -->
+        <script src="./js/Sortable.min.js"></script>
+
+
+        <script>
+                document.getElementById('year').textContent = new Date().getFullYear();
+        </script>
 </body>
+
 </html>
