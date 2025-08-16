@@ -5,5 +5,8 @@
   "scripts": {
     "build": "tailwindcss -i ./src/css/input.css -o ./dist/styles.css --watch",
     "build:prod": "tailwindcss -i ./src/css/input.css -o ./dist/styles.css --minify"
+  },
+  "dependencies": {
+    "@tailwindplus/elements": "^1.0.8"
   }
 }
