@@ -229,11 +229,6 @@
                                 const response = await fetch('./modals.html');
                                 const modalsHTML = await response.text();
                                 document.getElementById('modals-container').innerHTML = modalsHTML;
-                                
-                                // Disparar evento personalizado para indicar que los modales están listos
-                                document.dispatchEvent(new CustomEvent('modalsLoaded'));
-                                
-                                console.log('Modales cargados correctamente');
                         } catch (error) {
                                 console.warn('No se pudieron cargar los modales:', error);
                         }

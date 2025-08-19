@@ -192,7 +192,7 @@
     // =========================
     function buscar(id) { return tableros.find(t => t.id === id); }
 
-    function abrirTablero(id) { console.log('Abrir tablero', id); }
+    // function abrirTablero(id) { console.log('Abrir tablero', id); }
 
     async function abrirModalCompartir(id) {
         currentShareBoardId = id;
@@ -317,10 +317,10 @@
             if (card) manejarAccion(card.dataset.id, accionBtn.dataset.action);
         }
 
-        if (e.target.matches('[data-action="abrir"], [data-action="abrir"] *')) {
-            const card = e.target.closest('.tablero-card');
-            if (card) abrirTablero(card.dataset.id);
-        }
+        // if (e.target.matches('[data-action="abrir"], [data-action="abrir"] *')) {
+        //     const card = e.target.closest('.tablero-card');
+        //     if (card) abrirTablero(card.dataset.id);
+        // }
 
         if (e.target.closest('[data-action="favorito-toggle"]')) {
             const card = e.target.closest('.tablero-card');

@@ -1,0 +1,292 @@
+<!-- Modales del sistema de tableros -->
+
+<!-- Modal de agregacion/edicion de tablero -->
+<aside class="container-modal z-40 hidden" id="modal-agregar-tablero" data-modal aria-hidden="true">
+    <div class="absolute inset-0 bg-gray-800/70" data-modal-close></div>
+    <div class="modal-panel w-full h-full md:h-auto md:max-w-96 md:my-10 md:rounded-lg overflow-y-auto">
+        <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
+            <!-- Header -->
+            <div class="flex justify-between items-start p-6 pb-4 bg-slate-400/50">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-slate-100">
+                    <span id="modal-title-text">Crear Tablero</span>
+                </h2>
+                <button type="button" data-modal-close 
+                        class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Formulario -->
+            <div class="px-6 pb-6">
+                <form id="form-tablero" class="space-y-4">
+                    <input type="hidden" id="tablero-id" name="id">
+                    
+                    <div>
+                        <label for="tablero-titulo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Título del tablero
+                        </label>
+                        <input type="text" id="tablero-titulo" name="titulo" required
+                               class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white">
+                    </div>
+                    
+                    <div>
+                        <label for="tablero-descripcion" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Descripción
+                        </label>
+                        <textarea id="tablero-descripcion" name="descripcion" rows="3"
+                                  class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"></textarea>
+                    </div>
+                    
+                    <div class="flex justify-end gap-3 pt-4">
+                        <button type="button" data-modal-close
+                                class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-gray-500">
+                            Cancelar
+                        </button>
+                        <button type="submit" id="btn-guardar-tablero"
+                                class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg">
+                            Crear Tablero
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Modal de confirmacion de eliminación -->
+<div id="modal-eliminar" class="container-modal z-50 hidden" data-modal aria-modal="true" role="dialog">
+    <div class="absolute inset-0 bg-slate-900/80" data-modal-close></div>
+    <div class="modal-panel w-full h-full md:h-auto md:w-80 md:my-24 md:rounded-lg flex items-center justify-center">
+        <div class="border border-slate-200 bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg dark:border-slate-700">
+            <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-2">
+                Confirmar eliminación
+            </h2>
+            <p class="text-slate-600 dark:text-slate-300 text-sm mb-4">
+                ¿Estás seguro de que deseas eliminar este tablero? Esta acción no se puede deshacer.
+            </p>
+            <div class="flex justify-end gap-3">
+                <button type="button" data-modal-close
+                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-gray-500">
+                    Cancelar
+                </button>
+                <button type="button" id="btn-confirmar-eliminar"
+                        class="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de compartir tablero -->
+<aside class="container-modal z-40 hidden" id="modal-compartir" data-modal aria-hidden="true">
+    <div class="absolute inset-0 bg-gray-800/70" data-modal-close></div>
+    <div class="modal-panel w-full max-w-2xl mx-auto my-8 rounded-lg overflow-y-auto max-h-[90vh]">
+        <div class="bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-slate-100">
+                    Compartir Tablero
+                </h2>
+                <button type="button" data-modal-close 
+                        class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Contenido del modal -->
+            <div class="p-6 space-y-6">
+                
+                <!-- Sección de enlaces -->
+                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                        Compartir por enlace
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Permisos del enlace -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Permisos del enlace
+                            </label>
+                            <div class="space-y-2">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="share-link-perm" value="r" class="form-radio text-blue-600">
+                                    <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Solo lectura</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="share-link-perm" value="rw" checked class="form-radio text-blue-600">
+                                    <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Lectura y escritura</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Opción de expiración ANTES de generar -->
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" id="share-link-expira-pre" class="rounded">
+                                <label for="share-link-expira-pre" class="text-sm text-gray-600 dark:text-gray-400">
+                                    Expira en 24 horas
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div id="share-link-wrapper" class="hidden space-y-3">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Enlace generado
+                            </label>
+                            <div class="flex gap-2">
+                                <input type="text" id="share-link-text" readonly 
+                                       class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-600 dark:text-white">
+                                <button type="button" id="btn-copy-link"
+                                        class="px-3 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg">
+                                    Copiar
+                                </button>
+                                <button type="button" id="btn-del-link"
+                                        class="px-3 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg">
+                                    Eliminar
+                                </button>
+                            </div>
+                            <p id="share-link-exp" class="text-xs text-gray-500"></p>
+                        </div>
+                        
+                        <button type="button" id="btn-gen-link"
+                                class="w-full px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg">
+                            Generar Enlace
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Sección de códigos -->
+                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                        Compartir por código
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Permisos del código -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Permisos del código
+                            </label>
+                            <div class="space-y-2">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="share-code-perm" value="r" class="form-radio text-blue-600">
+                                    <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Solo lectura</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="share-code-perm" value="rw" checked class="form-radio text-blue-600">
+                                    <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Lectura y escritura</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Opción de expiración ANTES de generar -->
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" id="share-code-expira-pre" class="rounded">
+                                <label for="share-code-expira-pre" class="text-sm text-gray-600 dark:text-gray-400">
+                                    Expira en 24 horas
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div id="share-code-wrapper" class="hidden space-y-3">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Código generado
+                            </label>
+                            <div class="flex gap-2 items-center">
+                                <span id="share-code-value" 
+                                      class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg font-mono text-lg font-bold tracking-wider text-center min-w-[120px]">
+                                </span>
+                                <button type="button" id="btn-copy-code"
+                                        class="px-3 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg">
+                                    Copiar
+                                </button>
+                                <button type="button" id="btn-del-code"
+                                        class="px-3 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg">
+                                    Eliminar
+                                </button>
+                            </div>
+                            <p id="share-code-exp" class="text-xs text-gray-500"></p>
+                        </div>
+                        
+                        <button type="button" id="btn-gen-code"
+                                class="w-full px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg">
+                            Generar Código
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Sección de miembros -->
+                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">
+                        Miembros del tablero
+                    </h3>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <th class="text-left py-2 text-gray-600 dark:text-gray-400">Usuario</th>
+                                    <th class="text-left py-2 text-gray-600 dark:text-gray-400">Permisos</th>
+                                    <th class="text-right py-2 text-gray-600 dark:text-gray-400">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-miembros">
+                                <!-- Los miembros se cargarán dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Modal para unirse a un tablero -->
+<div class="container-modal z-50 hidden" id="modal-unirse" data-modal aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-800/90" data-modal-close></div>
+    <div class="relative w-full max-w-sm mx-auto my-24 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-slate-200 dark:border-gray-700 p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                Unirse a Tablero
+            </h2>
+            <button type="button" data-modal-close
+                    class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <form id="form-unirse" class="space-y-4" novalidate>
+            <div>
+                <label for="codigo-acceso" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Código de acceso
+                </label>
+                <input type="text" id="codigo-acceso" name="codigo" required maxlength="6"
+                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white font-mono text-center text-lg tracking-wider"
+                       placeholder="000000">
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    Ingresa el código de 6 dígitos que te compartieron
+                </p>
+            </div>
+            
+            <div class="flex justify-end gap-3">
+                <button type="button" data-modal-close
+                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-gray-500">
+                    Cancelar
+                </button>
+                <button type="submit"
+                        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg">
+                    Unirse
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
