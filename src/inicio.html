@@ -14,51 +14,73 @@
 <body class="min-h-screen h-full bg-gray-50 text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100">
 
         <!-- Header -->
-        <header class="sticky top-0 z-40 border-b border-gray-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-gray-800 dark:bg-gray-900/70">
+        <header
+                class="sticky top-0 z-40 border-b border-gray-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-gray-800 dark:bg-gray-900/70">
                 <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-                        <!-- Brand -->
+                        <!-- primary -->
                         <div class="flex items-center gap-3">
-                                <a href="#" class="flex items-center gap-2 font-bold tracking-tight text-brand hover:text-brand-700 dark:text-brand-400">
-                                        <span class="inline-flex h-8 w-8 items-center justify-center rounded bg-brand text-white">T</span>
-                                        <span class="text-lg">T'BAN</span>
+                                <a href="#"
+                                        class="flex items-center gap-2 font-bold tracking-tight text-primary hover:text-primary-700 dark:text-primary">
+                                        <span
+                                                class="inline-flex h-8 w-8 items-center justify-center rounded bg-primary text-white">T</span>
+                                        <span class="text-lg">'BAN</span>
                                 </a>
                                 <!-- Nav -->
                                 <nav class="hidden items-center gap-1 sm:flex">
                                         <!-- Tableros -->
                                         <div class="relative">
-                                                <button type="button" data-dropdown-toggle="menu-tableros" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:hover:bg-gray-800">
+                                                <button type="button" data-dropdown-toggle data-target="#menu-tableros"
+                                                        class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/40 dark:hover:bg-gray-800">
                                                         <span>Tableros</span>
-                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z" clip-rule="evenodd" />
-                                                        </svg>
+                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"
+                                                                aria-hidden="true">
+                                                                <path fill-rule="evenodd"
+                                                                        d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                                                                        clip-rule="evenodd" />
                                                 </button>
-                                                <div id="menu-tableros" class="dropdown hidden absolute left-0 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
-                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="ver-tableros">Ver todos</button>
-                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="mis-tableros">Tableros propios</button>
-                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="tableros-unidos">Tableros unidos</button>
+                                                <div id="menu-tableros" data-dropdown data-dd-group="menu-tableros"
+                                                        class="hidden absolute left-0 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                                                                data-action="ver-tableros">Ver todos</button>
+                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                                                                data-action="mis-tableros">Tableros propios</button>
+                                                        <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                                                                data-action="tableros-unidos">Tableros unidos</button>
                                                 </div>
                                         </div>
 
                                         <!-- Recientes -->
                                         <div class="relative">
-                                                <button type="button" data-dropdown-toggle="menu-recientes" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:hover:bg-gray-800">
+                                                <button type="button" data-dropdown-toggle data-target="#menu-recientes"
+                                                        class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/40 dark:hover:bg-gray-800">
                                                         <span>Recientes</span>
-                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z" clip-rule="evenodd" />
+                                                        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"
+                                                                aria-hidden="true">
+                                                                <path fill-rule="evenodd"
+                                                                        d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                                                                        clip-rule="evenodd" />
                                                         </svg>
                                                 </button>
-                                                <div id="menu-recientes" class="dropdown hidden absolute left-0 mt-2 w-64 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
-                                                        <p class="px-3 py-2 text-gray-500 dark:text-gray-400">No hay recientes aún</p>
+                                                <div id="menu-recientes" data-dropdown data-dd-group="menu-recientes"
+                                                        class="hidden absolute left-0 mt-2 w-64 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                                                        <p class="px-3 py-2 text-gray-500 dark:text-gray-400">No hay
+                                                                recientes aún</p>
                                                 </div>
                                         </div>
 
                                         <!-- Unirse a un tablero -->
-                                        <button type="button" data-modal-open="modal-unirse" class="rounded-md px-3 py-2 text-sm font-medium text-brand hover:bg-brand/10 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:text-brand-400">Unirse</button>
+                                        <button type="button" data-modal-target="#modal-unirse"
+                                                class="rounded-md px-3 py-2 text-sm font-medium text-primary-600 hover:bg-blue/10 focus:outline-none focus:ring-2 focus:ring-primary/40 dark:text-primary">
+                                                Unirse (B)
+                                        </button>
 
                                         <!-- Crear tablero -->
-                                        <button type="button" data-modal-open="modal-crear" class="inline-flex items-center gap-2 rounded-md bg-brand px-3 py-2 text-sm font-semibold text-white shadow hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand/40">
-                                                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                                        <button type="button" data-modal-target="#modal-agregar-tablero"
+                                                class="inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary/40">
+                                                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"
+                                                        aria-hidden="true">
+                                                        <path
+                                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                                                 </svg>
                                                 <span>Crear tablero</span>
                                         </button>
@@ -68,27 +90,32 @@
                         <!-- Actions -->
                         <div class="flex items-center gap-2">
                                 <!-- Theme toggle -->
-                                <button id="theme-toggle" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="Cambiar tema">
-                                        <svg id="icon-sun" class="h-5 w-5 hidden dark:inline" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                                <path d="M12 18a6 6 0 100-12 6 6 0 000 12zm0 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-22a1 1 0 011-1h0a1 1 0 110 2h0a1 1 0 01-1-1zM4.22 5.64a1 1 0 010-1.41L3.5 3.5a1 1 0 011.41-1.41l.71.71A1 1 0 014.22 5.64zM19.78 18.36a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zM1 12a1 1 0 011-1h1a1 1 0 110 2H2a1 1 0 01-1-1zm19 0a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM4.22 18.36a1 1 0 011.41 0l.71.71a1 1 0 01-1.41 1.41l-.71-.71a1 1 0 010-1.41zM18.36 4.22a1 1 0 010-1.41l.71-.71A1 1 0 1120.5 3.5l-.71.71a1 1 0 01-1.41 0z" />
-                                        </svg>
-                                        <svg id="icon-moon" class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                                <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
-                                        </svg>
+                                <button id="themeToggle" type="button"
+                                        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 dark:border-gray-700 dark:hover:bg-gray-800"
+                                        aria-label="Cambiar tema">
+                                        <i id="icon-moon" class="fa-solid fa-moon"></i>
+                                        <i id="icon-sun" class="fa-solid fa-sun"></i>
                                 </button>
 
                                 <!-- Perfil -->
                                 <div class="relative">
-                                        <button type="button" data-dropdown-toggle="menu-perfil" class="inline-flex items-center gap-2 rounded-full border border-gray-200 p-1 pl-2 text-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand/40 dark:border-gray-700 dark:hover:bg-gray-800">
-                                                <span class="hidden text-sm font-medium sm:inline">Perfil</span>
-                                                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand text-white">U</span>
+                                        <button type="button" data-dropdown-toggle data-target="#menu-perfil"
+                                                class="inline-flex items-center rounded-full border border-gray-200 p-1 text-sm hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus:ring-primary/40 dark:border-gray-700 dark:hover:bg-gray-800">
+                                                <!-- <span class="hidden text-sm font-medium sm:inline">Invitado</span> -->
+                                                <span
+                                                        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-700 font-bold dark:bg-slate-50">UE</span>
                                         </button>
-                                        <div id="menu-perfil" class="dropdown hidden absolute right-0 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
-                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="editar-perfil">Editar perfil</button>
+                                        <div id="menu-perfil" data-dropdown data-dd-group="Perfil"
+                                                class="hidden absolute right-0 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 text-sm shadow-lg dark:border-gray-800 dark:bg-gray-800">
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                                                        data-action="editar-perfil">Editar perfil</button>
                                                 <div class="my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
-                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="ver-tableros">Ver tableros</button>
-                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="mis-tableros">Tableros propios</button>
-                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700" data-action="tableros-unidos">Tableros unidos</button>
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                                                        data-action="ver-tableros">Ver tableros</button>
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                                                        data-action="mis-tableros">Tableros propios</button>
+                                                <button class="block w-full rounded px-3 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                                                        data-action="tableros-unidos">Tableros unidos</button>
                                         </div>
                                 </div>
                         </div>
@@ -99,417 +126,634 @@
         <div class="px-4 pt-6 max-w-7xl mx-auto">
                 <h1 class="text-3xl font-bold flex items-center gap-2">
                         Mis Tableros
-                        <span id="contador-tableros" class="text-sm font-medium rounded bg-gray-200/70 dark:bg-gray-700 px-2 py-0.5 text-gray-700 dark:text-gray-200">0</span>
+                        <span id="contador-tableros"
+                                class="text-sm font-medium rounded bg-gray-200/70 dark:bg-gray-700 px-2 py-0.5 text-gray-700 dark:text-gray-200">0</span>
                 </h1>
                 <p class="mt-2 text-gray-600 dark:text-gray-300">Gestiona, comparte y organiza tus tableros.</p>
 
                 <!-- Filtros rápidos -->
                 <div class="mt-4 flex flex-wrap gap-2">
-                        <button data-filtro="todos" class="filtro-tablero px-3 py-1.5 rounded text-sm bg-blue-600 text-white">Todos</button>
-                        <button data-filtro="propios" class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Propios</button>
-                        <button data-filtro="compartidos" class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Compartidos</button>
-                        <button data-filtro="favoritos" class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Favoritos</button>
-                        <button data-filtro="archivados" class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Archivados</button>
+                        <button data-filtro="todos"
+                                class="filtro-tablero px-3 py-1.5 rounded text-sm bg-blue-600 text-white">Todos</button>
+                        <button data-filtro="propios"
+                                class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Propios</button>
+                        <button data-filtro="compartidos"
+                                class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Compartidos</button>
+                        <button data-filtro="favoritos"
+                                class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Favoritos</button>
+                        <button data-filtro="archivados"
+                                class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Archivados</button>
                 </div>
 
                 <!-- Grid de tableros -->
-                <div id="grid-tableros" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div id="grid-tableros"
+                        class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         <!-- Las tarjetas se inyectan por JS -->
 
                         <!-- Tarjeta crear nuevo -->
                         <button id="btn-crear-tablero-grid"
                                 class="group relative flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-brand/60 bg-white/60 dark:bg-gray-800/40 p-4 text-center hover:border-brand hover:bg-brand/5 focus:outline-none focus:ring-2 focus:ring-brand/40 transition">
-                                <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white transition">
+                                <span
+                                        class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white transition">
                                         +
                                 </span>
                                 <span class="font-medium">Crear nuevo tablero</span>
-                                <span class="text-xs text-gray-500 dark:text-gray-400">Atajo: (C)</span>
-                                <span class="absolute right-2 top-2 text-[10px] uppercase tracking-wide text-brand font-semibold">Nuevo</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">Atajo: (A)</span>
+                                <span
+                                        class="absolute right-2 top-2 text-[10px] uppercase tracking-wide text-brand font-semibold">Nuevo</span>
                         </button>
                 </div>
         </div>
 
         <!-- Template tarjeta tablero -->
         <template id="template-tablero">
-                <div class="tablero-card group relative rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm hover:shadow transition flex flex-col">
+                <div
+                        class="tablero-card group relative rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm hover:shadow transition flex flex-col">
                         <div class="flex items-start justify-between gap-2">
                                 <div class="min-w-0">
                                         <div class="flex items-center gap-2">
                                                 <h2 class="titulo text-base font-semibold truncate"></h2>
-                                                <span class="badge-compartido hidden text-[10px] px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 dark:bg-indigo-600/30 dark:text-indigo-300 font-medium">Compartido</span>
-                                                <span class="badge-archivado hidden text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-700 dark:bg-amber-600/30 dark:text-amber-300 font-medium">Archivado</span>
+                                                <span
+                                                        class="badge-compartido hidden text-[10px] px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 dark:bg-indigo-600/30 dark:text-indigo-300 font-medium">Compartido</span>
+                                                <span
+                                                        class="badge-archivado hidden text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-700 dark:bg-amber-600/30 dark:text-amber-300 font-medium">Archivado</span>
                                         </div>
-                                        <p class="descripcion mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2"></p>
+                                        <p
+                                                class="descripcion mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+                                        </p>
                                 </div>
                                 <!-- Botón menú acciones -->
-                                <button type="button" class="btn-menu relative shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-brand/40" aria-label="Abrir menú">
+                                <button type="button"
+                                        class="btn-menu relative shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-brand/40"
+                                        aria-label="Abrir menú">
                                         <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                                <path d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z"/>
+                                                <path
+                                                        d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z" />
                                         </svg>
                                 </button>
 
                                 <!-- Dropdown acciones -->
-                                <div class="menu-acciones hidden absolute right-2 top-10 z-20 w-56 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-1 text-sm shadow-lg">
-                                        <button data-action="abrir" class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Abrir</button>
-                                        <button data-action="renombrar" class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Renombrar</button>
-                                        <button data-action="favorito" class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Marcar favorito</button>
+                                <div
+                                        class="menu-acciones hidden absolute right-2 top-10 z-20 w-56 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-1 text-sm shadow-lg">
+                                        <button data-action="abrir"
+                                                class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Abrir</button>
+                                        <button data-action="renombrar"
+                                                class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Renombrar</button>
+                                        <button data-action="favorito"
+                                                class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Marcar
+                                                favorito</button>
                                         <div class="my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
-                                        <button data-action="compartir" class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Compartir</button>
-                                        <button data-action="usuarios" class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Ver usuarios</button>
+                                        <button data-action="compartir"
+                                                class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Compartir</button>
+                                        <button data-action="usuarios"
+                                                class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Ver
+                                                usuarios</button>
                                         <div class="my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
-                                        <button data-action="duplicar" class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Duplicar</button>
-                                        <button data-action="archivar" class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Archivar</button>
-                                        <button data-action="salir" class="accion salir hidden w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Salir del tablero</button>
+                                        <button data-action="duplicar"
+                                                class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Duplicar</button>
+                                        <button data-action="archivar"
+                                                class="accion block w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Archivar</button>
+                                        <button data-action="salir"
+                                                class="accion salir hidden w-full text-left rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Salir
+                                                del tablero</button>
                                         <div class="my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
-                                        <button data-action="eliminar" class="accion text-red-600 dark:text-red-400 block w-full text-left rounded px-3 py-2 hover:bg-red-50 dark:hover:bg-red-900/30">Eliminar</button>
+                                        <button data-action="eliminar"
+                                                class="accion text-red-600 dark:text-red-400 block w-full text-left rounded px-3 py-2 hover:bg-red-50 dark:hover:bg-red-900/30">Eliminar</button>
                                 </div>
                         </div>
 
                         <div class="mt-3 flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
                                 <span class="fecha flex items-center gap-1">
-                                        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2a1 1 0 000 2h1v1a1 1 0 002 0V4h6v1a1 1 0 002 0V4h1a1 1 0 100-2H6z"/><path d="M5 7a2 2 0 00-2 2v9a4 4 0 004 4h10a4 4 0 004-4V9a2 2 0 00-2-2H5zm0 2h14v9a2 2 0 01-2 2H7a2 2 0 01-2-2V9z"/></svg>
+                                        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
+                                                <path
+                                                        d="M6 2a1 1 0 000 2h1v1a1 1 0 002 0V4h6v1a1 1 0 002 0V4h1a1 1 0 100-2H6z" />
+                                                <path
+                                                        d="M5 7a2 2 0 00-2 2v9a4 4 0 004 4h10a4 4 0 004-4V9a2 2 0 00-2-2H5zm0 2h14v9a2 2 0 01-2 2H7a2 2 0 01-2-2V9z" />
+                                        </svg>
                                         <span class="valor-fecha"></span>
                                 </span>
-                                <span class="propiedad privado hidden px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300">Privado</span>
-                                <span class="propiedad lectura hidden px-1.5 py-0.5 rounded bg-blue-100 text-blue-700 dark:bg-blue-600/30 dark:text-blue-300">Solo lectura</span>
+                                <span
+                                        class="propiedad privado hidden px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300">Privado</span>
+                                <span
+                                        class="propiedad lectura hidden px-1.5 py-0.5 rounded bg-blue-100 text-blue-700 dark:bg-blue-600/30 dark:text-blue-300">Solo
+                                        lectura</span>
                         </div>
 
                         <div class="mt-4 flex gap-2">
-                                <button data-action="abrir" class="btn-abrir flex-1 rounded bg-brand px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-600">Abrir</button>
-                                <button data-action="compartir" class="rounded bg-gray-200 dark:bg-gray-700 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600">Compartir</button>
+                                <button data-action="abrir"
+                                        class="btn-abrir flex-1 rounded bg-brand px-3 py-1.5 text-sm font-medium text-gray-950 dark:text-white hover:bg-brand-600">Abrir</button>
+                                <button data-modal-target="#modal-compartir"
+                                        class="rounded bg-gray-200 dark:bg-gray-700 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600">Compartir</button>
                         </div>
-                        <button data-action="favorito-toggle" class="marcar-favorito absolute -left-2 -top-2 inline-flex items-center justify-center h-8 w-8 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow hover:bg-yellow-50 dark:hover:bg-yellow-900/20 text-gray-500" title="Favorito">
+                        <button data-action="favorito-toggle"
+                                class="marcar-favorito absolute -left-2 -top-2 inline-flex items-center justify-center h-8 w-8 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow hover:bg-yellow-50 dark:hover:bg-yellow-900/20 text-gray-500"
+                                title="Favorito">
                                 <svg class="icono-favorito h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M11.48 3.499a.75.75 0 011.04 0l2.59 2.43 3.42.533a.75.75 0 01.41 1.28l-2.47 2.36.59 3.43a.75.75 0 01-1.09.79L12 12.88l-3.07 1.54a.75.75 0 01-1.09-.79l.59-3.43-2.47-2.36a.75.75 0 01.41-1.28l3.42-.533 2.59-2.43z"/>
+                                        <path
+                                                d="M11.48 3.499a.75.75 0 011.04 0l2.59 2.43 3.42.533a.75.75 0 01.41 1.28l-2.47 2.36.59 3.43a.75.75 0 01-1.09.79L12 12.88l-3.07 1.54a.75.75 0 01-1.09-.79l.59-3.43-2.47-2.36a.75.75 0 01.41-1.28l3.42-.533 2.59-2.43z" />
                                 </svg>
                         </button>
                 </div>
         </template>
 
-        <!-- Modal Compartir -->
-        <div id="modal-compartir" class="hidden fixed inset-0 z-40 flex items-center justify-center p-4">
-                <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-                <div class="relative w-full max-w-lg rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-6 shadow-lg">
-                        <h3 class="text-lg font-semibold">Compartir tablero</h3>
-                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-300" id="compartir-titulo-tablero"></p>
 
-                        <div class="mt-4 space-y-4 text-sm">
-                                <div>
-                                        <label class="font-medium">Código (lectura)</label>
-                                        <div class="mt-1 flex gap-2">
-                                                <input readonly id="codigo-lectura" class="flex-1 rounded border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-2 py-1 font-mono text-xs">
-                                                <button data-copy="#codigo-lectura" class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">Copiar</button>
+        <!-- Modal de agregacion/edicion de tablero -->
+        <aside class="container-modal z-40 hidden" id="modal-agregar-tablero" data-modal aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-800/70" data-modal-close></div>
+
+                <div class="modal-panel max-w-96">
+
+                        <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
+
+                                <!-- Header con dropdown -->
+                                <div class="flex justify-between items-start p-6 pb-4 bg-slate-400/50">
+
+                                        <div class="flex-1">
+                                                <h2 class="text-md font-bold text-lime-500 mb-2 dark:text-lime-400">
+                                                        Agregar tablero
+                                                </h2>
+                                                <div
+                                                        class="flex flex-wrap justify-between text-xs text-gray-600 mt-2 dark:text-gray-400">
+                                                        <p>Autor: Juan Pérez</p>
+                                                </div>
+
+                                        </div>
+
+                                        <!-- Cerrar el modal -->
+                                        <div class="relative">
+
+                                                <button class="text-slate-300/80 hover:text-white focus:outline-none"
+                                                        aria-label="Cerrar" data-modal-close>
+                                                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                        </svg>
+                                                </button>
+
                                         </div>
                                 </div>
-                                <div>
-                                        <label class="font-medium">Código (edición)</label>
-                                        <div class="mt-1 flex gap-2">
-                                                <input readonly id="codigo-edicion" class="flex-1 rounded border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-2 py-1 font-mono text-xs">
-                                                <button data-copy="#codigo-edicion" class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">Copiar</button>
-                                        </div>
-                                </div>
-                                <div>
-                                        <label class="font-medium">Enlace directo</label>
-                                        <div class="mt-1 flex gap-2">
-                                                <input readonly id="enlace-compartir" class="flex-1 rounded border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-2 py-1 font-mono text-xs">
-                                                <button data-copy="#enlace-compartir" class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">Copiar</button>
-                                        </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                        <label class="flex items-center gap-2 text-xs">
-                                                <input type="checkbox" id="toggle-expira" class="rounded border-gray-300 dark:border-gray-600">
-                                                Expira en 24h
-                                        </label>
-                                        <button id="btn-regenerar-codigos" class="ml-auto text-xs rounded bg-brand text-white px-2 py-1 hover:bg-brand-600">Regenerar</button>
+
+                                <!-- Formulario de edición -->
+                                <div class="px-3 pb-4 mt-2 relative">
+
+                                        <form class="p-3" method="post" action="#">
+
+                                                <div class="col-span-full">
+                                                        <label for="titulo-tablero"
+                                                                class="block text-sm/6 font-medium text-gray-500 dark:text-gray-200">Titulo</label>
+                                                        <div class="mt-2">
+                                                                <input id="titulo-tablero" name="titulo-tablero"
+                                                                        type="text" autocomplete="off"
+                                                                        placeholder="Nombre"
+                                                                        class="block w-full rounded-md bg-black/5 dark:bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-slate-500 sm:text-sm/6" />
+                                                        </div>
+                                                </div>
+
+                                                <div class="col-span-full">
+                                                        <label for="descripcion-tablero"
+                                                                class="block text-sm/6 font-medium text-gray-500 dark:text-gray-200">Descripción</label>
+                                                        <div class="mt-2">
+                                                                <textarea id="descripcion-tablero"
+                                                                        name="descripcion-tablero" rows="3"
+                                                                        placeholder="Describa los detalles de la actividad"
+                                                                        class="block w-full rounded-md bg-black/5 dark:bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"></textarea>
+                                                        </div>
+                                                        <p class="mt-1 text-sm/6 text-gray-400">Describa los detalles
+                                                                del tablero.</p>
+                                                </div>
+
+                                                <!-- Codigo de comparticion borroso con opcion de ver y copiar -->
+                                                <div class="col-span-full mt-3">
+                                                        <span for="compartir_tablero"
+                                                                class="block text-sm/6 font-medium text-gray-500 dark:text-gray-200">Compartir</sppa>
+                                                        <div class="mt-2 flex gap-2">
+
+                                                                <div
+                                                                        class="flex gap-1 items-center justify-center flex-1 rounded-md bg-black/5 dark:bg-white/5 px-3 py-1.5 text-base text-white sm:text-sm/6 blur-sm">
+                                                                        <span
+                                                                                class="border border-slate-600 border-dotted size-6 flex items-center justify-center rounded-md">X</span>
+                                                                        <span
+                                                                                class="border border-slate-600 border-dotted size-6 flex items-center justify-center rounded-md">X</span>
+                                                                        <span
+                                                                                class="border border-slate-600 border-dotted size-6 flex items-center justify-center rounded-md">X</span>
+                                                                        <span
+                                                                                class="border border-slate-600 border-dotted size-6 flex items-center justify-center rounded-md">X</span>
+                                                                        <span
+                                                                                class="border border-slate-600 border-dotted size-6 flex items-center justify-center rounded-md">X</span>
+                                                                        <span
+                                                                                class="border border-slate-600 border-dotted size-6 flex items-center justify-center rounded-md">X</span>
+                                                                </div>
+
+                                                                <button type="button"
+                                                                        class="inline-flex items-center gap-2 rounded-md bg-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
+                                                                        Generar
+                                                                </button>
+                                                                <button type="button"
+                                                                        class="inline-flex items-center gap-2 rounded-md bg-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 disabled:bg-gray-900"
+                                                                        disabled>
+                                                                        C
+                                                                </button>
+                                                        </div>
+                                                        <p class="mt-1 text-sm/6 text-gray-400">Comparta este codigo
+                                                                para que otros puedan unirse al tablero.</p>
+                                                </div>
+
+                                                <div class="col-span-full mt-3 flex gap-2 justify-end">
+                                                        <button type="button" data-modal-close
+                                                                class="inline-flex rounded-md border border-transparent bg-gray-700 px-2 py-1 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
+                                                                Cancelar
+                                                        </button>
+                                                        <button id="submitBtn" name="submit" type="submit"
+                                                                class="inline-flex rounded-md border border-transparent bg-green-600 px-2 py-1 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">Agregar</button>
+                                                </div>
+
+                                        </form>
                                 </div>
                         </div>
+                </div>
+        </aside>
 
-                        <div class="mt-6 flex justify-end gap-2">
-                                <button data-modal-close="modal-compartir" class="px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">Cerrar</button>
+        <!-- Modal de confirmacion de eliminación -->
+        <div id="modal-eliminar" class="container-modal z-50 hidden" data-modal aria-modal="true" role="dialog">
+                <div class="absolute inset-0 bg-slate-900/80" data-modal-close></div>
+                <div class="modal-panel w-72">
+
+                        <div class="border border-slate-200 bg-slate-200 dark:bg-slate-800 p-5 rounded-md shadow-lg dark:border-slate-700">
+                                <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Confirmar eliminación</h2>
+                                <p class=" text-slate-600 dark:text-slate-300 text-sm">¿Estás seguro de que deseas eliminar este elemento?</p>
+                                <div class="flex justify-end gap-2 mt-2">
+                                        <button data-modal-close
+                                                class="px-2 py-1 bg-gray-300 text-sm text-gray-800 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                                                Cancelar
+                                        </button>
+                                        <button id="btn-confirmar-eliminar" type="button"
+                                                class="px-2 py-1 bg-red-600 text-sm text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                                                Eliminar
+                                        </button>
+                                </div>
                         </div>
                 </div>
         </div>
 
-        <!-- Modal Usuarios -->
-        <div id="modal-usuarios" class="hidden fixed inset-0 z-40 flex items-center justify-center p-4">
-                <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-                <div class="relative w-full max-w-md rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-6 shadow-lg">
-                        <h3 class="text-lg font-semibold">Usuarios con acceso</h3>
-                        <p id="usuarios-titulo-tablero" class="mt-1 text-sm text-gray-600 dark:text-gray-300"></p>
-                        <ul id="lista-usuarios" class="mt-4 divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                                <!-- Items añadidos por JS -->
-                        </ul>
-                        <div class="mt-6 flex justify-end">
-                                <button data-modal-close="modal-usuarios" class="px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">Cerrar</button>
+        <!-- Modal de compartir de tablero -->
+        <aside class="container-modal z-40 hidden" id="modal-compartir" data-modal aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-800/70" data-modal-close></div>
+
+                <div class="modal-panel">
+
+                        <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
+
+                                <!-- Header -->
+                                <div class="flex justify-between items-start p-6 pb-4 bg-slate-400/50">
+
+                                        <div class="flex-1">
+                                                <h2 class="text-md font-bold text-lime-500 mb-2 dark:text-lime-400">Compartir tablero</h2>
+                                                <div class="flex flex-wrap justify-between text-xs text-gray-600 mt-2 dark:text-gray-400">
+                                                        <p>Compartido: <span class="ms-2 border border-gray-500 size-5 rounded-full px-2 py-2">6</span> usuarios</p>
+                                                </div>
+
+                                        </div>
+
+                                        <!-- Cerrar el modal -->
+                                        <div class="relative">
+
+                                                <button class="text-slate-300/80 hover:text-white focus:outline-none" aria-label="Cerrar" data-modal-close>
+                                                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                        </svg>
+                                                </button>
+
+                                        </div>
+                                </div>
+
+                                <!-- Formulario de edición -->
+                                <div class="px-3 pb-4 mt-2 relative">
+
+                                        <div class="p-3" id="contenedor-compartir">
+
+                                                <!-- Compartir mediante link -->
+                                                <div class="col-span-full mt-3">
+                                                        <span for="compartir_tablero"
+                                                                class="block text-sm/6 font-medium text-gray-500 dark:text-gray-200">Compartir mediante link</sppa>
+                                                        <div class="mt-2 flex gap-2 flex-col sm:flex-row">
+
+                                                                <div class="flex gap-2">
+
+                                                                        <button type="button"
+                                                                                class="inline-flex items-center gap-2 rounded-md bg-gray-200 px-2 py-1 text-sm font-medium text-cyan-700 hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 dark:bg-cyan-700 dark:text-cyan-200 dark:hover:bg-cyan-600"
+                                                                                disabled>
+                                                                                Copiar
+                                                                        </button>
+                                                                        <button type="button"
+                                                                                class="inline-flex items-center gap-2 rounded-md bg-red-700 px-2 py-1 text-sm font-medium text-gray-700 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:bg-red-700 dark:text-gray-200 dark:hover:bg-red-600">
+                                                                                Eliminar
+                                                                        </button>
+                                                                        <!-- Tipo de permiso -->
+                                                                        <select id="tipo-permiso"
+                                                                                class="flex-1 block w-32 rounded-md bg-black/5 dark:bg-white/5 px-2 py-1 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-slate-500 sm:text-sm/6">
+                                                                                <option value="lectura">Solo lectura</option>
+                                                                                <option value="escritura">Lectura y escritura</option>
+                                                                        </select>
+                                                                </div>
+
+                                                                <div class="flex gap-1 items-center flex-1 rounded-md overflow-hidden bg-black/5 dark:bg-white/5 px-3 py-1.5 text-xs md:text-base text-slate-950 dark:text-white sm:text-sm/6 blur-sm">
+                                                                        <span>lorem.goog.e.com/jdoowireu8sahdsajhdj</span>
+                                                                </div>
+
+                                                        </div>
+                                                        <div class="flex gap-2 flex-col md:flex-row md:justify-between">
+                                                                <!-- Checkbox Expira en 24 horas. -->
+                                                                <div class="flex items-center gap-2 md:order-2">
+                                                                        <input id="expira-24h" name="expira-24h" type="checkbox"
+                                                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-700 dark:focus:ring-indigo-500" />
+                                                                        <label for="expira-24h"
+                                                                                class="text-sm/6 font-medium text-gray-500 dark:text-gray-200">Expira en 24 horas</label>
+                                                                </div>
+                                                                
+                                                                <p class="mt-1 text-xs/6 text-gray-400">Comparta este codigo para que otros puedan unirse al tablero.</p>
+                                                        </div>
+
+                                                </div>
+                                                
+                                                <!-- Compartir mediante código -->
+                                                <div class="col-span-full mt-3">
+                                                        <span for="compartir_tablero"
+                                                                class="block text-sm/6 font-medium text-gray-500 dark:text-gray-200">Compartir mediante código</sppa>
+                                                        <div class="mt-2 flex gap-2">
+
+                                                                <div class="flex gap-1 items-center flex-1 rounded-md  py-1 text-base font-bold text-slate-950 dark:text-white sm:text-sm/6 blur-sm">
+                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
+                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
+                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
+                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
+                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
+                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
+                                                                </div>
+
+                                                                <button type="button"
+                                                                        class="inline-flex items-center gap-2 rounded-md bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
+                                                                        Generar
+                                                                </button>
+                                                                <button type="button"
+                                                                        class="inline-flex items-center gap-2 rounded-md bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                                                                        disabled>
+                                                                        Copiar
+                                                                </button>
+                                                                <button type="button"
+                                                                                class="inline-flex items-center gap-2 rounded-md bg-red-700 px-2 py-1 text-sm font-medium text-gray-700 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:bg-red-700 dark:text-gray-200 dark:hover:bg-red-600">
+                                                                                Eliminar
+                                                                </button>
+                                                        </div>
+                                                        <div class="flex gap-2 flex-col md:flex-row md:justify-between">
+                                                                <!-- Checkbox Expira en 24 horas. -->
+                                                                <div class="flex items-center gap-2 md:order-2">
+                                                                        <input id="expira-24h-code" name="expira-24h" type="checkbox"
+                                                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-700 dark:focus:ring-indigo-500" />
+                                                                        <label for="expira-24h-code"
+                                                                                class="text-sm/6 font-medium text-gray-500 dark:text-gray-200">Expira en 24 horas</label>
+                                                                </div>
+                                                                
+                                                                <p class="mt-1 text-xs/6 text-gray-400">Comparta este codigo para que otros puedan unirse al tablero.</p>
+                                                        </div>
+                                                </div>                                                
+
+                                        </div>
+
+                                        <!-- separador -->
+                                        <div class="my-4 h-px bg-gray-200 dark:bg-gray-700"></div>
+
+                                        <!-- Listado de usuarios que tienen acceso al tablero: -->
+                                        <div class="overflow-x-auto" id="contenedor-usuarios">
+                                                <p class="font-medium my-2 ms-2">Listado de usuarios actualmente</p>
+                                                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                                        <thead class="bg-gray-50 dark:bg-gray-800">
+                                                                <tr>
+                                                                        <th scope="col"
+                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                                                                Usuario</th>
+                                                                        <th scope="col"
+                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                                                                Permiso</th>
+                                                                        <th scope="col"
+                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                                                                Union</th>
+                                                                        <th scope="col"
+                                                                                class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                                                                Acciones</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody class="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                                                <!-- Placeholder para usuarios -->
+                                                                <tr>
+                                                                        <td class="px-6 py-4 whitespace-nowrap">Juan Garcia</td>
+                                                                        <td class="px-6 py-4 whitespace-nowrap">Lectura</td>
+                                                                        <td class="px-6 py-4 whitespace-nowrap">12-09-2024</td>
+                                                                        <td class="px-6 py-4 gap-2 whitespace-nowrap text-right">
+                                                                                <div class="inline-flex items-center gap-3">
+                                                                                        <label class="inline-flex items-center gap-2 text-sm">
+                                                                                                <input type="checkbox" name="permiso_wr" class="permiso-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:outline-none" />
+                                                                                                <span class="text-gray-700 dark:text-gray-300">Editar</span>
+                                                                                        </label>
+
+                                                                                        <label class="inline-flex items-center gap-2 text-sm">
+                                                                                                <input type="checkbox" name="permiso_read" class="permiso-checkbox h-4 w-4 text-blue-600 border-gray-300 rounded focus:outline-none" />
+                                                                                                <span class="text-blue-600 dark:text-blue-300">Leer</span>
+                                                                                        </label>
+
+                                                                                        <button class="text-red-600 text-sm ms-2 dark:text-red-300">Eliminar</button>
+                                                                                </div>
+                                                                        </td>
+                                                                </tr>
+                                                                <!-- Más filas de usuarios -->
+                                                        </tbody>
+                                                </table>
+                                        </div>
+                                </div>
                         </div>
                 </div>
-        </div>
+        </aside>
+
 
         <!-- Script de interacción (placeholder, reemplazar por lógica real/API) -->
+        <script src="./js/backend-inicio.js"></script>
+
+        <!-- Modal para unirse a un tablero -->
+        <div class="container-modal z-50 hidden" id="modal-unirse" data-modal aria-hidden="true">
+                <div class="absolute inset-0 bg-slate-800/90" data-modal-close></div>
+
+                <div class="modal-panel">
+
+                        <div
+                                class="border border-slate-200 bg-slate-600 p-5 rounded-md shadow-lg dark:bg-gray-900 dark:border-gray-950">
+
+                                <div class="flex items-center justify-between mb-2">
+                                        <h2 class="text-lg font-semibold text-white">Ingresa el código</h2>
+                                        <button class="text-white/80 hover:text-white focus:outline-none"
+                                                data-modal-close>
+                                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                        </button>
+                                </div>
+
+                                <form id="codeForm" class="space-y-4" novalidate>
+                                        <div class="flex justify-center gap-2">
+                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                        maxlength="1"
+                                                        class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                        maxlength="1"
+                                                        class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                        maxlength="1"
+                                                        class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                        maxlength="1"
+                                                        class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                        maxlength="1"
+                                                        class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                        maxlength="1"
+                                                        class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                        </div>
+
+                                        <input type="hidden" id="code" name="code" />
+
+                                        <p id="error-message-bloqueo" class="my-2 text-red-200 text-sm ps-3 hidden">
+                                                Ingrese una clave</p>
+
+                                        <div class="flex justify-center">
+                                                <button type="submit"
+                                                        class="px-4 py-2 bg-blue-600 text-sm text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                                        unirse
+                                                </button>
+                                        </div>
+                                </form>
+                        </div>
+                </div>
+
+        </div>
+
+        <script src="./js/modal-g.js"></script>
+        <script src="./js/toggle-tema.js"></script>
+
+        <!-- Script de configuración de dropdowns -->
         <script>
-        (function() {
-                const grid = document.getElementById('grid-tableros');
-                const tpl = document.getElementById('template-tablero');
-                const contador = document.getElementById('contador-tableros');
+                // Dropdowns y subdropdowns – generalizado
+                (() => {
+                        // Utilidades
+                        const qs = (sel, ctx = document) => ctx.querySelector(sel);
+                        const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+                        const getTarget = (el) => {
+                                const sel = el.getAttribute('data-target') || el.getAttribute('aria-controls');
+                                if (!sel) return null;
 
-                // Datos de ejemplo
-                let tableros = [
-                        { id: 't1', titulo: 'Marketing Q4', descripcion: 'Campañas y contenidos para el trimestre.', creado: '2024-10-01', compartido: true, propietario: true, favorito: true, soloLectura: false, archivado: false },
-                        { id: 't2', titulo: 'Desarrollo Producto', descripcion: 'Roadmap y sprints del producto principal.', creado: '2024-09-15', compartido: true, propietario: false, favorito: false, soloLectura: true, archivado: false },
-                        { id: 't3', titulo: 'Personal', descripcion: 'Tareas personales y listas rápidas.', creado: '2024-11-05', compartido: false, propietario: true, favorito: false, soloLectura: false, archivado: false },
-                        { id: 't4', titulo: 'Ideas', descripcion: 'Banco de ideas y experimentos.', creado: '2024-08-20', compartido: false, propietario: true, favorito: false, soloLectura: false, archivado: true },
-                ];
-
-                const state = { filtro: 'todos' };
-
-                function formatearFecha(iso) {
-                        const d = new Date(iso);
-                        return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
-                }
-
-                function render() {
-                        // Eliminar tarjetas actuales (menos la de crear)
-                        [...grid.querySelectorAll('.tablero-card')].forEach(n => n.remove());
-                        let visibles = 0;
-                        tableros.forEach(tb => {
-                                if (!pasaFiltro(tb)) return;
-                                visibles++;
-                                const node = tpl.content.firstElementChild.cloneNode(true);
-                                node.dataset.id = tb.id;
-                                node.querySelector('.titulo').textContent = tb.titulo;
-                                node.querySelector('.descripcion').textContent = tb.descripcion || 'Sin descripción';
-                                node.querySelector('.valor-fecha').textContent = formatearFecha(tb.creado);
-                                if (tb.compartido) node.querySelector('.badge-compartido').classList.remove('hidden');
-                                if (tb.archivado) node.querySelector('.badge-archivado').classList.remove('hidden');
-                                if (!tb.compartido) node.querySelector('.privado').classList.remove('hidden');
-                                if (tb.soloLectura) node.querySelector('.lectura').classList.remove('hidden');
-                                if (!tb.propietario) node.querySelector('.salir').classList.remove('hidden');
-                                if (tb.favorito) {
-                                        node.querySelector('.marcar-favorito').classList.add('text-yellow-500');
-                                        node.querySelector('.icono-favorito').classList.add('fill-yellow-400');
+                                const root = el.closest('[data-dd-root]');
+                                if (root) {
+                                        const local = root.querySelector(sel);
+                                        if (local) return local;
                                 }
-                                grid.insertBefore(node, document.getElementById('btn-crear-tablero-grid'));
-                        });
-                        contador.textContent = visibles;
-                }
 
-                function pasaFiltro(tb) {
-                        switch(state.filtro) {
-                                case 'propios': return tb.propietario;
-                                case 'compartidos': return tb.compartido;
-                                case 'favoritos': return tb.favorito;
-                                case 'archivados': return tb.archivado;
-                                default: return true;
-                        }
-                }
+                                return document.querySelector(sel);
+                        };
+                        const isOpen = (menu) => !menu.classList.contains('hidden');
+                        const open = (menu) => menu.classList.remove('hidden');
+                        const close = (menu) => menu.classList.add('hidden');
 
-                // Filtros
-                document.querySelectorAll('.filtro-tablero').forEach(btn => {
-                        btn.addEventListener('click', () => {
-                                document.querySelectorAll('.filtro-tablero').forEach(b => b.classList.remove('bg-brand','text-white'));
-                                document.querySelectorAll('.filtro-tablero').forEach(b => b.classList.add('bg-gray-200','dark:bg-gray-700','dark:text-gray-200'));
-                                btn.classList.remove('bg-gray-200','dark:bg-gray-700','dark:text-gray-200');
-                                btn.classList.add('bg-brand','text-white');
-                                state.filtro = btn.dataset.filtro;
-                                render();
-                        });
-                });
+                        // NUEVO: actualizar bloqueo de scroll en contenedores de tarjetas
+                        const updateScrollLocks = () => {
+                                // quitar locks previos
+                                document.querySelectorAll('[data-droplist].scroll-locked')
+                                        .forEach(c => c.classList.remove('scroll-locked'));
+                                // por cada menú abierto, marcar su scroller ancestro
+                                document.querySelectorAll('[data-dropdown]:not(.hidden)').forEach(menu => {
+                                        const scroller = menu.closest('[data-droplist]');
+                                        if (scroller) scroller.classList.add('scroll-locked');
+                                });
+                        };
 
-                // Delegación acciones
-                document.addEventListener('click', (e) => {
-                        // Menú acciones
-                        if (e.target.closest('.btn-menu')) {
-                                const card = e.target.closest('.tablero-card');
-                                const menu = card.querySelector('.menu-acciones');
-                                cerrarMenus();
-                                menu.classList.toggle('hidden');
-                                return;
-                        }
-                        if (!e.target.closest('.menu-acciones')) cerrarMenus();
+                        // Cerrar otros menús del mismo grupo
+                        const closeGroupPeers = (menuToOpen) => {
+                                const group = menuToOpen.getAttribute('data-dd-group') || '__default__';
+                                qsa('[data-dropdown]').forEach(m => {
+                                        if (m === menuToOpen) return;
+                                        const g = m.getAttribute('data-dd-group') || '__default__';
+                                        if (g === group) close(m);
+                                });
+                        };
 
-                        // Acciones dentro de un tablero
-                        const accionBtn = e.target.closest('.accion');
-                        if (accionBtn) {
-                                const card = accionBtn.closest('.tablero-card');
-                                const id = card.dataset.id;
-                                manejarAccion(id, accionBtn.dataset.action);
-                        }
+                        // Cerrar submenús hermanos dentro del mismo contenedor padre
+                        const closeSiblingSubmenus = (submenu) => {
+                                const parent = submenu.parentElement?.parentElement; // contenedor del menú padre
+                                if (!parent) return;
+                                qsa('[data-dropdown-submenu]', parent).forEach(sm => {
+                                        if (sm !== submenu) close(sm);
+                                });
+                        };
 
-                        // Abrir directo (botones de acción principal)
-                        if (e.target.matches('[data-action="abrir"], [data-action="abrir"] *')) {
-                                const card = e.target.closest('.tablero-card');
-                                if (card) abrirTablero(card.dataset.id);
-                        }
+                        // Apertura/cierre de menús (captura para saltarse stopPropagation)
+                        const onDocClickOpen = (e) => {
+                                const trigger = e.target.closest('[data-dropdown-toggle]');
+                                if (!trigger) return;
+                                const menu = getTarget(trigger);
+                                if (!menu || !menu.hasAttribute('data-dropdown')) return;
 
-                        // Favorito toggle
-                        if (e.target.closest('[data-action="favorito-toggle"]')) {
-                                const card = e.target.closest('.tablero-card');
-                                toggleFavorito(card.dataset.id);
-                        }
+                                // Exclusividad por grupo
+                                closeGroupPeers(menu);
 
-                        // Crear
-                        if (e.target.id === 'btn-crear-tablero-grid') {
-                                crearTablero();
-                        }
+                                // Toggle
+                                isOpen(menu) ? close(menu) : open(menu);
+                                updateScrollLocks(); // NUEVO
+                        };
 
-                        // Copiar
-                        if (e.target.matches('[data-copy]')) {
-                                copiar(e.target.getAttribute('data-copy'));
-                        }
+                        const onDocClickCloseButtons = (e) => {
+                                // Clic en cualquier botón que explícitamente cierre (opcional, si los usas)
+                                const closer = e.target.closest('[data-dropdown-close]');
+                                if (!closer) return;
+                                const menu = e.target.closest('[data-dropdown]') || getTarget(closer);
+                                if (menu) close(menu);
+                                updateScrollLocks(); // NUEVO
+                        };
 
-                        // Cerrar modal
-                        if (e.target.matches('[data-modal-close]') || e.target === e.currentTarget.querySelector(e.target.getAttribute?.('data-modal-close') || '')) {
-                                const idModal = e.target.getAttribute('data-modal-close');
-                                if (idModal) document.getElementById(idModal).classList.add('hidden');
-                        }
+                        // Submenus
+                        const onDocClickSubToggle = (e) => {
+                                const subTrigger = e.target.closest('[data-dropdown-subtoggle]');
+                                if (!subTrigger) return;
+                                const submenu = getTarget(subTrigger);
+                                if (!submenu || !submenu.hasAttribute('data-dropdown-submenu')) return;
 
-                        // Fondo modal (cerrar)
-                        if (e.target.id === 'modal-compartir' || e.target.id === 'modal-usuarios') {
-                                e.target.classList.add('hidden');
-                        }
+                                // Cierra hermanos y togglear el actual
+                                closeSiblingSubmenus(submenu);
+                                isOpen(submenu) ? close(submenu) : open(submenu);
+                                updateScrollLocks(); // NUEVO
+                        };
 
-                        if (e.target.id === 'btn-regenerar-codigos') {
-                                generarCodigosCompartir();
-                        }
-                });
+                        // Click fuera: cierra TODOS los menús abiertos
+                        const onOutside = (e) => {
+                                // Si el click fue dentro de algún menú o en un botón que lo abre, no cerrar
+                                if (e.target.closest('[data-dropdown]') || e.target.closest('[data-dropdown-toggle]')) return;
+                                document.querySelectorAll('[data-dropdown]').forEach(close);
+                                updateScrollLocks(); // NUEVO
+                        };
 
-                function cerrarMenus() {
-                        document.querySelectorAll('.menu-acciones').forEach(m => m.classList.add('hidden'));
-                }
+                        // Tecla ESC: cierra todos
+                        const onEsc = (e) => {
+                                if (e.key !== 'Escape') return;
+                                document.querySelectorAll('[data-dropdown]').forEach(close);
+                                updateScrollLocks(); // NUEVO
+                        };
 
-                function manejarAccion(id, action) {
-                        switch(action) {
-                                case 'abrir': abrirTablero(id); break;
-                                case 'compartir': abrirModalCompartir(id); break;
-                                case 'usuarios': abrirModalUsuarios(id); break;
-                                case 'eliminar': eliminarTablero(id); break;
-                                case 'renombrar': renombrarTablero(id); break;
-                                case 'duplicar': duplicarTablero(id); break;
-                                case 'archivar': archivarTablero(id); break;
-                                case 'favorito': toggleFavorito(id); break;
-                                case 'salir': salirDeTablero(id); break;
-                        }
-                }
-
-                function buscar(id) {
-                        return tableros.find(t => t.id === id);
-                }
-
-                function abrirTablero(id) {
-                        console.log('Abrir tablero', id);
-                        // window.location.href = './tablero.html?id=' + id;
-                }
-
-                function abrirModalCompartir(id) {
-                        const t = buscar(id);
-                        document.getElementById('compartir-titulo-tablero').textContent = t.titulo;
-                        generarCodigosCompartir(id);
-                        document.getElementById('modal-compartir').classList.remove('hidden');
-                }
-
-                function generarCodigosCompartir(id) {
-                        const suf = id ? '-' + id : '';
-                        document.getElementById('codigo-lectura').value = 'R-' + Math.random().toString(36).substring(2,8).toUpperCase() + suf;
-                        document.getElementById('codigo-edicion').value = 'E-' + Math.random().toString(36).substring(2,8).toUpperCase() + suf;
-                        document.getElementById('enlace-compartir').value = location.origin + '/tablero/' + (id || 'nuevo') + '?token=' + Math.random().toString(36).substring(2,10);
-                }
-
-                function abrirModalUsuarios(id) {
-                        const t = buscar(id);
-                        document.getElementById('usuarios-titulo-tablero').textContent = t.titulo;
-                        const lista = document.getElementById('lista-usuarios');
-                        lista.innerHTML = '';
-                        // Mock usuarios
-                        const usuarios = [
-                                { nombre: 'Ana', rol: 'Editor' },
-                                { nombre: 'Luis', rol: 'Lectura' },
-                                { nombre: 'María', rol: 'Propietario' },
-                        ];
-                        usuarios.forEach(u => {
-                                const li = document.createElement('li');
-                                li.className = 'py-2 flex items-center justify-between';
-                                li.innerHTML = '<span class="flex-1">' + u.nombre + '</span><span class="text-xs px-2 py-0.5 rounded bg-gray-200 dark:bg-gray-700">' + u.rol + '</span>';
-                                lista.appendChild(li);
-                        });
-                        document.getElementById('modal-usuarios').classList.remove('hidden');
-                }
-
-                function eliminarTablero(id) {
-                        if (!confirm('¿Eliminar este tablero?')) return;
-                        tableros = tableros.filter(t => t.id !== id);
-                        render();
-                }
-
-                function renombrarTablero(id) {
-                        const t = buscar(id);
-                        const nuevo = prompt('Nuevo nombre:', t.titulo);
-                        if (nuevo) { t.titulo = nuevo; render(); }
-                }
-
-                function duplicarTablero(id) {
-                        const t = buscar(id);
-                        const copia = { ...t, id: 'c' + Date.now(), titulo: t.titulo + ' (copia)', creado: new Date().toISOString().slice(0,10), propietario: true, favorito: false };
-                        tableros.unshift(copia);
-                        render();
-                }
-
-                function archivarTablero(id) {
-                        const t = buscar(id);
-                        t.archivado = !t.archivado;
-                        render();
-                }
-
-                function toggleFavorito(id) {
-                        const t = buscar(id);
-                        t.favorito = !t.favorito;
-                        render();
-                }
-
-                function salirDeTablero(id) {
-                        if (!confirm('¿Salir del tablero?')) return;
-                        tableros = tableros.filter(t => t.id !== id);
-                        render();
-                }
-
-                function crearTablero() {
-                        const nombre = prompt('Nombre del tablero:');
-                        if (!nombre) return;
-                        tableros.unshift({
-                                id: 'n' + Date.now(),
-                                titulo: nombre,
-                                descripcion: 'Sin descripción',
-                                creado: new Date().toISOString().slice(0,10),
-                                compartido: false,
-                                propietario: true,
-                                favorito: false,
-                                soloLectura: false,
-                                archivado: false
-                        });
-                        render();
-                }
-
-                function copiar(selector) {
-                        const el = document.querySelector(selector);
-                        el.select?.();
-                        navigator.clipboard.writeText(el.value).then(() => {
-                                // Pequeña notificación temporal
-                                const b = document.createElement('div');
-                                b.textContent = 'Copiado';
-                                b.className = 'fixed bottom-4 right-4 bg-gray-900 text-white px-3 py-1.5 rounded text-sm animate-fade';
-                                document.body.appendChild(b);
-                                setTimeout(() => b.remove(), 1400);
-                        });
-                }
-
-                // Atajo crear (C)
-                document.addEventListener('keydown', (e) => {
-                        if (e.key.toLowerCase() === 'c' && !e.metaKey && !e.ctrlKey && !e.altKey) {
-                                crearTablero();
-                        }
-                });
-
-                render();
-        })();
+                        // Listeners — en CAPTURA para ignorar stopPropagation en componentes internos
+                        document.addEventListener('click', onDocClickOpen, true);
+                        document.addEventListener('click', onDocClickCloseButtons, true);
+                        document.addEventListener('click', onDocClickSubToggle, true);
+                        document.addEventListener('pointerdown', onOutside, true);
+                        document.addEventListener('keydown', onEsc, true);
+                })();
         </script>
 
 </body>

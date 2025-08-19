@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "tema": "dark",
+        "preferencia-nombre": "nombre"
+    },
+    {
+        "id": 2,
+        "tema": "light",
+        "preferencia-nombre": "nickname"
+    },
+    {
+        "id": 5,
+        "tema": "dark",
+        "preferencia-nombre": "nombre"
+    }
+
+]

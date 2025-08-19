@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "nombre": "Juan",
+        "apellidos": "Pérez",
+        "nickname": "juanp",
+        "correo": "juan.perez@example.com",
+        "contraseña": "P@ssw0rd2023!",
+        "fecha_de_registro": "2021-09-12T08:15:30Z"
+    },
+    {
+        "id": 2,
+        "nombre": "María",
+        "apellidos": "García",
+        "nickname": "mariag",
+        "correo": "maria.garcia@example.com",
+        "contraseña": "M4r!a2022",
+        "fecha_de_registro": "2022-01-05T12:00:00Z"
+    },
+    {
+        "id": 3,
+        "nombre": "Carlos",
+        "apellidos": "Rodríguez",
+        "nickname": "carlosr",
+        "correo": "carlos.rodriguez@example.com",
+        "contraseña": "C4rl0s#89",
+        "fecha_de_registro": "2020-06-20T18:45:10Z"
+    },
+    {
+        "id": 4,
+        "nombre": "Ana",
+        "apellidos": "López",
+        "nickname": "analopez",
+        "correo": "ana.lopez@example.com",
+        "contraseña": "An@L0pez2021",
+        "fecha_de_registro": "2023-03-02T09:30:00Z"
+    },
+    {
+        "id": 5,
+        "nombre": "Luis",
+        "apellidos": "Martínez",
+        "nickname": "luism",
+        "correo": "luis.martinez@example.com",
+        "contraseña": "Lu!sM2020",
+        "fecha_de_registro": "2021-11-11T14:22:05Z"
+    },
+    {
+        "id": 6,
+        "nombre": "Elena",
+        "apellidos": "Sánchez",
+        "nickname": "elenas",
+        "correo": "elena.sanchez@example.com",
+        "contraseña": "El3n@#55",
+        "fecha_de_registro": "2022-07-19T10:05:45Z"
+    },
+    {
+        "id": 7,
+        "nombre": "Diego",
+        "apellidos": "Fernández",
+        "nickname": "diegof",
+        "correo": "diego.fernandez@example.com",
+        "contraseña": "D!eg0F123",
+        "fecha_de_registro": "2019-12-31T23:59:59Z"
+    },
+    {
+        "id": 8,
+        "nombre": "Laura",
+        "apellidos": "Gómez",
+        "nickname": "laurag",
+        "correo": "laura.gomez@example.com",
+        "contraseña": "L@ur4G0mez",
+        "fecha_de_registro": "2023-08-08T11:11:11Z"
+    },
+    {
+        "id": 9,
+        "nombre": "Miguel",
+        "apellidos": "Ruiz",
+        "nickname": "miguelr",
+        "correo": "miguel.ruiz@example.com",
+        "contraseña": "M1gu3l!Ruiz",
+        "fecha_de_registro": "2020-04-01T06:30:30Z"
+    },
+    {
+        "id": 10,
+        "nombre": "Sofía",
+        "apellidos": "Torres",
+        "nickname": "sofiat",
+        "correo": "sofia.torres@example.com",
+        "contraseña": "S0f!aT2024",
+        "fecha_de_registro": "2024-05-20T16:45:00Z"
+    }
+]

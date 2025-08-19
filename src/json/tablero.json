@@ -1,5 +1,6 @@
 [
     {
+        "id": "t1",
         "titulo": "Proyecto Personal",
         "descripcion": "Tablero para organizar tareas personales y metas semanales.",
         "creacion": "2024-06-10T09:30:00Z",
@@ -8,6 +9,7 @@
         "autor": "Esteban"
     },
     {
+        "id": "t2",
         "titulo": "Trabajo en Equipo",
         "descripcion": "Tablero compartido para la gestión de proyectos del equipo de desarrollo.",
         "creacion": "2024-05-28T14:15:00Z",
@@ -16,6 +18,7 @@
         "autor": "Ana"
     },
     {
+        "id": "t3",
         "titulo": "Ideas Creativas",
         "descripcion": "Espacio para anotar ideas y posibles mejoras para futuros proyectos.",
         "creacion": "2024-06-01T11:00:00Z",
@@ -24,6 +27,7 @@
         "autor": "Carlos"
     },
     {
+        "id": "t4",
         "titulo": "Planificación de Eventos",
         "descripcion": "Tablero para organizar eventos y reuniones importantes.",
         "creacion": "2024-06-05T16:45:00Z",
