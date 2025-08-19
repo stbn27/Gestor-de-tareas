@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="../dist/styles.css">
 </head>
 
-<body class="min-h-screen h-full bg-gray-50 text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100">
+<body data-usuario-actual="3" class="min-h-screen h-full bg-gray-50 text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100">
 
         <!-- Header -->
         <header
@@ -141,18 +141,16 @@
                                 class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Compartidos</button>
                         <button data-filtro="favoritos"
                                 class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Favoritos</button>
-                        <button data-filtro="archivados"
-                                class="filtro-tablero px-3 py-1.5 rounded text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-200">Archivados</button>
                 </div>
 
                 <!-- Grid de tableros -->
                 <div id="grid-tableros"
                         class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                        <!-- Las tarjetas se inyectan por JS -->
+                        <!-- Mensaje vacío se inyectará si no hay resultados -->
 
                         <!-- Tarjeta crear nuevo -->
                         <button id="btn-crear-tablero-grid"
-                                class="group relative flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-brand/60 bg-white/60 dark:bg-gray-800/40 p-4 text-center hover:border-brand hover:bg-brand/5 focus:outline-none focus:ring-2 focus:ring-brand/40 transition">
+                                class="group relative flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-brand/60 bg-white/60 dark:bg-gray-800/40 p-4 text-center hover:border-brand hover:bg-brand/5 focus:outline-none focus:ring-2 focus:ring-brand/40 transition dark:text-gray-100">
                                 <span
                                         class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white transition">
                                         +
@@ -167,14 +165,13 @@
 
         <!-- Template tarjeta tablero -->
         <template id="template-tablero">
-                <div
-                        class="tablero-card group relative rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm hover:shadow transition flex flex-col">
+                <div class="tablero-card group relative rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm hover:shadow transition flex flex-col">
                         <div class="flex items-start justify-between gap-2">
                                 <div class="min-w-0">
                                         <div class="flex items-center gap-2">
                                                 <h2 class="titulo text-base font-semibold truncate"></h2>
-                                                <span
-                                                        class="badge-compartido hidden text-[10px] px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 dark:bg-indigo-600/30 dark:text-indigo-300 font-medium">Compartido</span>
+                                                <span class="badge-compartido hidden text-[10px] px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 dark:bg-indigo-600/30 dark:text-indigo-300 font-medium">Compartido</span>
+                                                <span class="badge-conmigo hidden text-[10px] px-2 py-0.5 rounded bg-purple-100 text-purple-700 dark:bg-purple-600/30 dark:text-purple-200 font-medium">Compartido contigo</span>
                                                 <span
                                                         class="badge-archivado hidden text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-700 dark:bg-amber-600/30 dark:text-amber-300 font-medium">Archivado</span>
                                         </div>
@@ -232,8 +229,7 @@
                                         </svg>
                                         <span class="valor-fecha"></span>
                                 </span>
-                                <span
-                                        class="propiedad privado hidden px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300">Privado</span>
+                                <span class="propiedad privado hidden px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300">Privado</span>
                                 <span
                                         class="propiedad lectura hidden px-1.5 py-0.5 rounded bg-blue-100 text-blue-700 dark:bg-blue-600/30 dark:text-blue-300">Solo
                                         lectura</span>
@@ -251,7 +247,7 @@
                                 <svg class="icono-favorito h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                                         <path
                                                 d="M11.48 3.499a.75.75 0 011.04 0l2.59 2.43 3.42.533a.75.75 0 01.41 1.28l-2.47 2.36.59 3.43a.75.75 0 01-1.09.79L12 12.88l-3.07 1.54a.75.75 0 01-1.09-.79l.59-3.43-2.47-2.36a.75.75 0 01.41-1.28l3.42-.533 2.59-2.43z" />
-                                </svg>
+                        </svg>
                         </button>
                 </div>
         </template>
@@ -261,7 +257,7 @@
         <aside class="container-modal z-40 hidden" id="modal-agregar-tablero" data-modal aria-hidden="true">
                 <div class="absolute inset-0 bg-gray-800/70" data-modal-close></div>
 
-                <div class="modal-panel max-w-96">
+                <div class="modal-panel w-full h-full md:h-auto md:max-w-96 md:my-10 md:rounded-lg overflow-y-auto">
 
                         <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
 
@@ -377,8 +373,7 @@
         <!-- Modal de confirmacion de eliminación -->
         <div id="modal-eliminar" class="container-modal z-50 hidden" data-modal aria-modal="true" role="dialog">
                 <div class="absolute inset-0 bg-slate-900/80" data-modal-close></div>
-                <div class="modal-panel w-72">
-
+                <div class="modal-panel w-full h-full md:h-auto md:w-72 md:my-24 md:rounded-lg flex items-center justify-center">
                         <div class="border border-slate-200 bg-slate-200 dark:bg-slate-800 p-5 rounded-md shadow-lg dark:border-slate-700">
                                 <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">Confirmar eliminación</h2>
                                 <p class=" text-slate-600 dark:text-slate-300 text-sm">¿Estás seguro de que deseas eliminar este elemento?</p>
@@ -399,8 +394,7 @@
         <!-- Modal de compartir de tablero -->
         <aside class="container-modal z-40 hidden" id="modal-compartir" data-modal aria-hidden="true">
                 <div class="absolute inset-0 bg-gray-800/70" data-modal-close></div>
-
-                <div class="modal-panel">
+                <div class="modal-panel w-full h-full md:h-auto md:max-w-2xl md:my-10 md:rounded-lg overflow-y-auto">
 
                         <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
 
@@ -430,148 +424,89 @@
                                 <!-- Formulario de edición -->
                                 <div class="px-3 pb-4 mt-2 relative">
 
-                                        <div class="p-3" id="contenedor-compartir">
+                                        <div class="p-3" id="contenedor-compartir" data-share>
 
-                                                <!-- Compartir mediante link -->
+                                                <!-- LINKS -->
                                                 <div class="col-span-full mt-3">
-                                                        <span for="compartir_tablero"
-                                                                class="block text-sm/6 font-medium text-gray-500 dark:text-gray-200">Compartir mediante link</sppa>
-                                                        <div class="mt-2 flex gap-2 flex-col sm:flex-row">
-
-                                                                <div class="flex gap-2">
-
-                                                                        <button type="button"
-                                                                                class="inline-flex items-center gap-2 rounded-md bg-gray-200 px-2 py-1 text-sm font-medium text-cyan-700 hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 dark:bg-cyan-700 dark:text-cyan-200 dark:hover:bg-cyan-600"
-                                                                                disabled>
-                                                                                Copiar
-                                                                        </button>
-                                                                        <button type="button"
-                                                                                class="inline-flex items-center gap-2 rounded-md bg-red-700 px-2 py-1 text-sm font-medium text-gray-700 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:bg-red-700 dark:text-gray-200 dark:hover:bg-red-600">
-                                                                                Eliminar
-                                                                        </button>
-                                                                        <!-- Tipo de permiso -->
-                                                                        <select id="tipo-permiso"
-                                                                                class="flex-1 block w-32 rounded-md bg-black/5 dark:bg-white/5 px-2 py-1 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-slate-500 sm:text-sm/6">
-                                                                                <option value="lectura">Solo lectura</option>
-                                                                                <option value="escritura">Lectura y escritura</option>
-                                                                        </select>
+                                                        <label class="block text-sm font-medium text-gray-500 dark:text-gray-200">Compartir mediante link</label>
+                                                        <div class="mt-2 flex flex-col gap-3">
+                                                                <div class="flex flex-col sm:flex-row gap-2 items-start sm:items-stretch">
+                                                                        <div class="flex gap-2">
+                                                                                <select id="share-link-permiso" class="rounded-md bg-black/5 dark:bg-white/5 px-2 py-1 text-sm text-white outline-none focus:ring-2 focus:ring-slate-500">
+                                                                                        <option value="rw">Lectura y escritura</option>
+                                                                                        <option value="r">Solo lectura</option>
+                                                                                </select>
+                                                                                <button id="btn-gen-link" type="button" class="px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 text-sm hover:bg-gray-300 dark:hover:bg-gray-600">Generar</button>
+                                                                                <button id="btn-copy-link" type="button" class="px-2 py-1 rounded bg-cyan-600 text-white text-sm hover:bg-cyan-500 disabled:opacity-40" disabled>Copiar</button>
+                                                                                <button id="btn-del-link" type="button" class="px-2 py-1 rounded bg-red-600 text-white text-sm hover:bg-red-500 disabled:opacity-40" disabled>Eliminar</button>
+                                                                        </div>
+                                                                        <div id="share-link-wrapper" class="flex-1 flex items-center gap-2 rounded-md bg-black/5 dark:bg-white/5 px-3 py-1.5 text-xs sm:text-sm text-slate-950 dark:text-white blur-sm select-text">
+                                                                                <span id="share-link-text" class="truncate">—</span>
+                                                                                <span id="share-link-exp" class="text-[10px] uppercase tracking-wide bg-indigo-600/20 text-indigo-700 dark:text-indigo-300 px-1.5 py-0.5 rounded hidden"></span>
+                                                                        </div>
                                                                 </div>
-
-                                                                <div class="flex gap-1 items-center flex-1 rounded-md overflow-hidden bg-black/5 dark:bg-white/5 px-3 py-1.5 text-xs md:text-base text-slate-950 dark:text-white sm:text-sm/6 blur-sm">
-                                                                        <span>lorem.goog.e.com/jdoowireu8sahdsajhdj</span>
-                                                                </div>
-
+                                                                <label class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-300">
+                                                                        <input id="share-link-expira" type="checkbox" class="h-4 w-4 rounded border-gray-400 dark:border-gray-600 bg-transparent"> Expira en 24h
+                                                                </label>
                                                         </div>
-                                                        <div class="flex gap-2 flex-col md:flex-row md:justify-between">
-                                                                <!-- Checkbox Expira en 24 horas. -->
-                                                                <div class="flex items-center gap-2 md:order-2">
-                                                                        <input id="expira-24h" name="expira-24h" type="checkbox"
-                                                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-700 dark:focus:ring-indigo-500" />
-                                                                        <label for="expira-24h"
-                                                                                class="text-sm/6 font-medium text-gray-500 dark:text-gray-200">Expira en 24 horas</label>
-                                                                </div>
-                                                                
-                                                                <p class="mt-1 text-xs/6 text-gray-400">Comparta este codigo para que otros puedan unirse al tablero.</p>
-                                                        </div>
-
                                                 </div>
-                                                
-                                                <!-- Compartir mediante código -->
-                                                <div class="col-span-full mt-3">
-                                                        <span for="compartir_tablero"
-                                                                class="block text-sm/6 font-medium text-gray-500 dark:text-gray-200">Compartir mediante código</sppa>
-                                                        <div class="mt-2 flex gap-2">
 
-                                                                <div class="flex gap-1 items-center flex-1 rounded-md  py-1 text-base font-bold text-slate-950 dark:text-white sm:text-sm/6 blur-sm">
-                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
-                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
-                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
-                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
-                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
-                                                                        <span class="border border-slate-600 border-dotted size-12 md:p-3 font-bold font-mono flex items-center justify-center rounded-md bg-black/5 dark:bg-white/5 px-3">X</span>
+                                                <!-- CÓDIGOS -->
+                                                <div class="col-span-full mt-6">
+                                                        <label class="block text-sm font-medium text-gray-500 dark:text-gray-200">Compartir mediante código</label>
+                                                        <div class="mt-2 flex flex-col gap-3">
+                                                                <div class="flex flex-wrap gap-3 items-center">
+                                                                        <fieldset class="flex gap-3 text-xs">
+                                                                                <label class="inline-flex items-center gap-1">
+                                                                                        <input type="radio" name="share-code-perm" id="share-code-perm-rw" value="rw" checked class="text-indigo-600 focus:ring-indigo-500">
+                                                                                        <span>Lect / Escr</span>
+                                                                                </label>
+                                                                                <label class="inline-flex items-center gap-1">
+                                                                                        <input type="radio" name="share-code-perm" id="share-code-perm-r" value="r" class="text-indigo-600 focus:ring-indigo-500">
+                                                                                        <span>Solo lectura</span>
+                                                                                </label>
+                                                                        </fieldset>
+                                                                        <div class="flex gap-2">
+                                                                                <button id="btn-gen-code" type="button" class="px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 text-sm hover:bg-gray-300 dark:hover:bg-gray-600">Generar</button>
+                                                                                <button id="btn-copy-code" type="button" class="px-2 py-1 rounded bg-cyan-600 text-white text-sm hover:bg-cyan-500 disabled:opacity-40" disabled>Copiar</button>
+                                                                                <button id="btn-del-code" type="button" class="px-2 py-1 rounded bg-red-600 text-white text-sm hover:bg-red-500 disabled:opacity-40" disabled>Eliminar</button>
+                                                                        </div>
                                                                 </div>
-
-                                                                <button type="button"
-                                                                        class="inline-flex items-center gap-2 rounded-md bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
-                                                                        Generar
-                                                                </button>
-                                                                <button type="button"
-                                                                        class="inline-flex items-center gap-2 rounded-md bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
-                                                                        disabled>
-                                                                        Copiar
-                                                                </button>
-                                                                <button type="button"
-                                                                                class="inline-flex items-center gap-2 rounded-md bg-red-700 px-2 py-1 text-sm font-medium text-gray-700 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:bg-red-700 dark:text-gray-200 dark:hover:bg-red-600">
-                                                                                Eliminar
-                                                                </button>
-                                                        </div>
-                                                        <div class="flex gap-2 flex-col md:flex-row md:justify-between">
-                                                                <!-- Checkbox Expira en 24 horas. -->
-                                                                <div class="flex items-center gap-2 md:order-2">
-                                                                        <input id="expira-24h-code" name="expira-24h" type="checkbox"
-                                                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-700 dark:focus:ring-indigo-500" />
-                                                                        <label for="expira-24h-code"
-                                                                                class="text-sm/6 font-medium text-gray-500 dark:text-gray-200">Expira en 24 horas</label>
+                                                                <div id="share-code-wrapper" class="flex items-center gap-2">
+                                                                        <span id="share-code-value" class="font-mono text-lg tracking-widest px-3 py-1 rounded bg-black/5 dark:bg-white/5 blur-sm select-text">──────</span>
+                                                                        <span id="share-code-exp" class="text-[10px] uppercase tracking-wide bg-amber-500/20 text-amber-700 dark:text-amber-300 px-1.5 py-0.5 rounded hidden"></span>
                                                                 </div>
-                                                                
-                                                                <p class="mt-1 text-xs/6 text-gray-400">Comparta este codigo para que otros puedan unirse al tablero.</p>
+                                                                <label class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-300">
+                                                                        <input id="share-code-expira" type="checkbox" class="h-4 w-4 rounded border-gray-400 dark:border-gray-600 bg-transparent"> Expira en 24h
+                                                                </label>
                                                         </div>
-                                                </div>                                                
-
+                                                </div>
                                         </div>
 
                                         <!-- separador -->
-                                        <div class="my-4 h-px bg-gray-200 dark:bg-gray-700"></div>
+                                        <div class="my-6 h-px bg-gray-200 dark:bg-gray-700"></div>
 
-                                        <!-- Listado de usuarios que tienen acceso al tablero: -->
-                                        <div class="overflow-x-auto" id="contenedor-usuarios">
-                                                <p class="font-medium my-2 ms-2">Listado de usuarios actualmente</p>
-                                                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                                                        <thead class="bg-gray-50 dark:bg-gray-800">
+                                        <!-- Usuarios con acceso -->
+                                        <div id="contenedor-usuarios" data-share-users>
+                                                <p class="font-medium mb-2 text-sm">Miembros con acceso</p>
+                                                <table class="min-w-full text-sm border border-gray-200 dark:border-gray-700 rounded overflow-hidden">
+                                                        <thead class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
                                                                 <tr>
-                                                                        <th scope="col"
-                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                                                                Usuario</th>
-                                                                        <th scope="col"
-                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                                                                Permiso</th>
-                                                                        <th scope="col"
-                                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                                                                Union</th>
-                                                                        <th scope="col"
-                                                                                class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                                                                Acciones</th>
+                                                                        <th class="px-3 py-2 text-left">Usuario</th>
+                                                                        <th class="px-3 py-2 text-left">Permisos</th>
+                                                                        <th class="px-3 py-2 text-left">Tipo</th>
+                                                                        <th class="px-3 py-2 text-right">Acciones</th>
                                                                 </tr>
                                                         </thead>
-                                                        <tbody class="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                                                <!-- Placeholder para usuarios -->
-                                                                <tr>
-                                                                        <td class="px-6 py-4 whitespace-nowrap">Juan Garcia</td>
-                                                                        <td class="px-6 py-4 whitespace-nowrap">Lectura</td>
-                                                                        <td class="px-6 py-4 whitespace-nowrap">12-09-2024</td>
-                                                                        <td class="px-6 py-4 gap-2 whitespace-nowrap text-right">
-                                                                                <div class="inline-flex items-center gap-3">
-                                                                                        <label class="inline-flex items-center gap-2 text-sm">
-                                                                                                <input type="checkbox" name="permiso_wr" class="permiso-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:outline-none" />
-                                                                                                <span class="text-gray-700 dark:text-gray-300">Editar</span>
-                                                                                        </label>
-
-                                                                                        <label class="inline-flex items-center gap-2 text-sm">
-                                                                                                <input type="checkbox" name="permiso_read" class="permiso-checkbox h-4 w-4 text-blue-600 border-gray-300 rounded focus:outline-none" />
-                                                                                                <span class="text-blue-600 dark:text-blue-300">Leer</span>
-                                                                                        </label>
-
-                                                                                        <button class="text-red-600 text-sm ms-2 dark:text-red-300">Eliminar</button>
-                                                                                </div>
-                                                                        </td>
+                                                        <tbody id="tabla-miembros" class="divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-slate-800">
+                                                                <tr class="text-gray-500 dark:text-gray-400" id="miembros-placeholder">
+                                                                        <td colspan="4" class="px-3 py-4 text-center">Sin miembros</td>
                                                                 </tr>
-                                                                <!-- Más filas de usuarios -->
                                                         </tbody>
                                                 </table>
                                         </div>
                                 </div>
                         </div>
-                </div>
         </aside>
 
 
@@ -581,11 +516,8 @@
         <!-- Modal para unirse a un tablero -->
         <div class="container-modal z-50 hidden" id="modal-unirse" data-modal aria-hidden="true">
                 <div class="absolute inset-0 bg-slate-800/90" data-modal-close></div>
-
-                <div class="modal-panel">
-
-                        <div
-                                class="border border-slate-200 bg-slate-600 p-5 rounded-md shadow-lg dark:bg-gray-900 dark:border-gray-950">
+                <div class="modal-panel w-full h-full md:h-auto md:max-w-sm md:my-24 md:rounded-lg flex items-center justify-center overflow-y-auto">
+                        <div class="border border-slate-200 bg-slate-600 p-5 rounded-md shadow-lg dark:bg-gray-900 dark:border-gray-950">
 
                                 <div class="flex items-center justify-between mb-2">
                                         <h2 class="text-lg font-semibold text-white">Ingresa el código</h2>
@@ -601,22 +533,22 @@
 
                                 <form id="codeForm" class="space-y-4" novalidate>
                                         <div class="flex justify-center gap-2">
-                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                <input inputmode="numeric" name="digit_1" pattern="[0-9]*" autocomplete="one-time-code"
                                                         maxlength="1"
                                                         class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                <input inputmode="numeric" name="digit_2" pattern="[0-9]*" autocomplete="one-time-code"
                                                         maxlength="1"
                                                         class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                <input inputmode="numeric" name="digit_3" pattern="[0-9]*" autocomplete="one-time-code"
                                                         maxlength="1"
                                                         class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                <input inputmode="numeric" name="digit_4" pattern="[0-9]*" autocomplete="one-time-code"
                                                         maxlength="1"
                                                         class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                <input inputmode="numeric" name="digit_5" pattern="[0-9]*" autocomplete="one-time-code"
                                                         maxlength="1"
                                                         class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                                                <input inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code"
+                                                <input inputmode="numeric" name="digit_6" pattern="[0-9]*" autocomplete="one-time-code"
                                                         maxlength="1"
                                                         class="otp-input w-12 h-12 md:w-14 md:h-14 text-center text-lg font-medium rounded-md border border-gray-300 bg-white dark:bg-slate-700 dark:border-slate-600 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                                         </div>
@@ -638,7 +570,7 @@
 
         </div>
 
-        <script src="./js/modal-g.js"></script>
+        <script src="./js/modal.js"></script>
         <script src="./js/toggle-tema.js"></script>
 
         <!-- Script de configuración de dropdowns -->

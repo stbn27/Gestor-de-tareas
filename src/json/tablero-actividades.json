@@ -1,0 +1,147 @@
+{
+    "tableros": [
+        {
+            "id-tablero": "T1",
+            "columnas": [
+                {
+                    "id-columna": "C1",
+                    "actividades": [
+                        {
+                            "id-actividad": "A1",
+                            "titulo": "Crear una base de datos",
+                            "descripcion": "Crear la base de datos para el proyecto",
+                            "creado_por": "1",
+                            "prioridad": "Baja",
+                            "asignado_a": "4",
+                            "creado": "2023-10-01",
+                            "fecha_limite": "2023-10-31",
+                            "etiquetas": [
+                                "base de datos",
+                                "seguridad"
+                            ],
+                            "comentarios": [
+                                {
+                                    "Pedro": "Revisar la documentación de OAuth",
+                                    "Ana": "Configurar el servidor de autenticación",
+                                    "Alberto": "Soy insano"
+                                }
+                            ],
+                            "detalles": "Crear una base de datos relacional para almacenar la información del proyecto. *Limite *Atencion prioritaria. * Cifrado maximo",
+                            "bloqueo": true,
+                            "clave": "543234"
+                        }
+                    ],
+                    "orden": ["A1"]
+                },
+                {
+                    "id-columna": "C2",
+                    "actividades": [
+                        {
+                            "id-actividad": "A2",
+                            "titulo": "Implementar autenticación",
+                            "descripcion": "Implementar el sistema de autenticación para la aplicación",
+                            "creado_por": "2",
+                            "prioridad": "Alta",
+                            "asignado_a": "3",
+                            "creado": "2023-10-02",
+                            "fecha_limite": "2023-10-30",
+                            "etiquetas": [
+                                "autenticación",
+                                "seguridad"
+                            ],
+                            "comentarios": [
+                                {
+                                    "Pedro": "Investigar sobre JWT",
+                                    "Ana": "Configurar el middleware de autenticación",
+                                    "Alberto": "Revisar la política de seguridad"
+                                }
+                            ],
+                            "detalles": "Implementar un sistema de autenticación basado en tokens JWT. *Limite *Atencion prioritaria. * Cifrado maximo",
+                            "bloqueo": false,
+                            "clave": null
+                        },
+                        {
+                            "id-actividad": "A4",
+                            "titulo": "Implementar auditoría",
+                            "descripcion": "Implementar el sistema de auditoría para la aplicación",
+                            "creado_por": "4",
+                            "prioridad": "Baja",
+                            "asignado_a": "1",
+                            "creado": "2023-10-04",
+                            "fecha_limite": "2023-10-28",
+                            "etiquetas": [
+                                "auditoría",
+                                "seguridad"
+                            ],
+                            "comentarios": [
+                                {
+                                    "Pedro": "Investigar sobre logging",
+                                    "Ana": "Configurar el middleware de auditoría",
+                                    "Alberto": "Revisar la política de auditoría"
+                                }
+                            ],
+                            "detalles": "Implementar un sistema de auditoría para registrar las acciones de los usuarios. *Limite *Atencion prioritaria. * Cifrado maximo",
+                            "bloqueo": false,
+                            "clave": null
+                        },
+                        {
+                            "id-actividad": "A5",
+                            "titulo": "Implementar monitoreo",
+                            "descripcion": "Implementar el sistema de monitoreo para la aplicación",
+                            "creado_por": "5",
+                            "prioridad": "Baja",
+                            "asignado_a": "1",
+                            "creado": "2023-10-05",
+                            "fecha_limite": "2023-10-27",
+                            "etiquetas": [
+                                "monitoreo",
+                                "seguridad"
+                            ],
+                            "comentarios": [
+                                {
+                                    "Pedro": "Investigar sobre métricas",
+                                    "Ana": "Configurar el middleware de monitoreo",
+                                    "Alberto": "Revisar la política de monitoreo"
+                                }
+                            ],
+                            "detalles": "Implementar un sistema de monitoreo para registrar las acciones de los usuarios. *Limite *Atencion prioritaria. * Cifrado maximo",
+                            "bloqueo": false,
+                            "clave": null
+                        }
+                    ],
+                    "orden":["A5", "A4", "A2"]
+                },
+                {
+                    "id-columna": "C3",
+                    "actividades": [
+                        {
+                            "id-actividad": "A3",
+                            "titulo": "Implementar autorización",
+                            "descripcion": "Implementar el sistema de autorización para la aplicación",
+                            "creado_por": "3",
+                            "prioridad": "Media",
+                            "asignado_a": "2",
+                            "creado": "2023-10-03",
+                            "fecha_limite": "2023-10-29",
+                            "etiquetas": [
+                                "autorización",
+                                "seguridad"
+                            ],
+                            "comentarios": [
+                                {
+                                    "Pedro": "Investigar sobre RBAC",
+                                    "Ana": "Configurar el middleware de autorización",
+                                    "Alberto": "Revisar la política de acceso"
+                                }
+                            ],
+                            "detalles": "Implementar un sistema de autorización basado en roles. *Limite *Atencion prioritaria. * Cifrado maximo",
+                            "bloqueo": false,
+                            "clave": null
+                        }
+                    ],
+                    "orden": ["A3"]
+                }
+            ]
+        }
+    ]
+}

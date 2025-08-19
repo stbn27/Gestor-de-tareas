@@ -1,0 +1,82 @@
+{
+    "tableros": [
+        {
+            "id-tablero": "T1",
+            "columnas": [
+                {
+                    "id-columna": "C1",
+                    "nombre-columna": "Por hacer",
+                    "color-header": "bg-blue-500",
+                    "color-background": "bg-blue-100"
+                },
+                {
+                    "id-columna": "C2",
+                    "nombre-columna": "En progreso",
+                    "color-header": "bg-yellow-500",
+                    "color-background": "bg-yellow-100"
+                },
+                {
+                    "id-columna": "C3",
+                    "nombre-columna": "Completado",
+                    "color-header": "bg-green-500",
+                    "color-background": "bg-green-100"
+                }
+            ],
+            "orden":["C1","C3","C2"]
+        },
+        {
+            "id-tablero": "T2",
+            "columnas": [
+                {
+                    "id-columna": "C1",
+                    "nombre-columna": "Nuevas",
+                    "color-header": "bg-lime-500",
+                    "color-background": "bg-lime-100"
+                },
+                {
+                    "id-columna": "C2",
+                    "nombre-columna": "En progreso",
+                    "color-header": "bg-yellow-500",
+                    "color-background": "bg-yellow-100"
+                },
+                {
+                    "id-columna": "C3",
+                    "nombre-columna": "Completado",
+                    "color-header": "bg-green-500",
+                    "color-background": "bg-green-100"
+                },
+                {
+                    "id-columna": "C4",
+                    "nombre-columna": "Revisar",
+                    "color-header": "bg-red-500",
+                    "color-background": "bg-red-100"
+                }
+            ],
+            "orden":["C1","C4","C2","C3"]
+        },
+        {
+            "id-tablero": "T4",
+            "columnas": [
+                {
+                    "id-columna": "C1",
+                    "nombre-columna": "Pendiente",
+                    "color-header": "bg-gray-500",
+                    "color-background": "bg-gray-100"
+                },
+                {
+                    "id-columna": "C2",
+                    "nombre-columna": "En revisión",
+                    "color-header": "bg-blue-500",
+                    "color-background": "bg-blue-100"
+                },
+                {
+                    "id-columna": "C3",
+                    "nombre-columna": "Aprobado",
+                    "color-header": "bg-green-500",
+                    "color-background": "bg-green-100"
+                }
+            ],
+            "orden":["C1","C2","C3"]
+        }
+    ]
+}

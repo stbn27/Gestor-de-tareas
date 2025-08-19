@@ -15,7 +15,7 @@
                 "permiso":["Escritura", "Lectura"]
             },
             {
-                "usuario": "3",
+                "usuario": "4",
                 "permiso":["Lectura"]
             }
             
@@ -24,17 +24,71 @@
     },
     {
         "id-tablero":"2T",
-        "id-usuario":"6",
+        "id-usuario":"3",
         "titulo":"Diseño de interfaz",
         "descripcion":"Tablero para gestionar el diseño de la interfaz de usuario.",
         "fecha_creacion":"2023-08-05T09:30:00Z",
         "fecha_modificacion":"2023-08-20T14:15:00Z",
         "estado":"activo",
         "is-favorito": true,
-        "is-compartido": false,
+        "is-compartido": true,
         "miembros": [
             {
                 "usuario": "2",
+                "permiso":["Escritura", "Lectura"]
+            },
+            {
+                "usuario": "6",
+                "permiso":["Lectura"]
+            }
+        ]
+    },
+    {
+        "id-tablero":"3T",
+        "id-usuario":"3",
+        "titulo":"Pruebas de usabilidad",
+        "descripcion":"Tablero para gestionar las pruebas de usabilidad del producto.",
+        "fecha_creacion":"2023-08-10T11:00:00Z",
+        "fecha_modificacion":"2023-08-25T15:45:00Z",
+        "estado":"activo",
+        "is-favorito": false,
+        "is-compartido": false,
+        "miembros": []
+    },
+    {
+        "id-tablero":"4T",
+        "id-usuario":"7",
+        "titulo":"Tablero compartido con el usuario 3",
+        "descripcion":"No es el autor pero tiene acceso a él.",
+        "fecha_creacion":"2023-08-10T11:00:00Z",
+        "fecha_modificacion":"2023-08-25T15:45:00Z",
+        "estado":"activo",
+        "is-favorito": true,
+        "is-compartido": true,
+        "miembros": [
+            {
+                "usuario": "3",
+                "permiso":["Escritura", "Lectura"]
+            },
+            {
+                "usuario": "6",
+                "permiso":["Lectura"]
+            }
+        ]
+    },
+    {
+        "id-tablero":"5T",
+        "id-usuario":"8",
+        "titulo":"Siendo insanos",
+        "descripcion":"No es el autor pero tiene acceso a él.",
+        "fecha_creacion":"2023-08-10T11:00:00Z",
+        "fecha_modificacion":"2023-08-25T15:45:00Z",
+        "estado":"activo",
+        "is-favorito": true,
+        "is-compartido": true,
+        "miembros": [
+            {
+                "usuario": "7",
                 "permiso":["Escritura", "Lectura"]
             },
             {
@@ -42,16 +96,5 @@
                 "permiso":["Lectura"]
             }
         ]
-    },
-    {
-        "id-tablero":"3T",
-        "id-usuario":"6",
-        "titulo":"Pruebas de usabilidad",
-        "descripcion":"Tablero para gestionar las pruebas de usabilidad del producto.",
-        "fecha_creacion":"2023-08-10T11:00:00Z",
-        "fecha_modificacion":"2023-08-25T15:45:00Z",
-        "estado":"activo",
-        "is-favorito": false,
-        "is-compartido": false
     }
 ]
