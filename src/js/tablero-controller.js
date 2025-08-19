@@ -5,6 +5,7 @@ class TableroController {
     constructor() {
         this.currentFilter = 'todos';
         this.currentShareBoardId = null;
+        this.shareListenersInitialized = false;
         
         // Referencias a elementos DOM
         this.gridElement = document.getElementById('grid-tableros');
@@ -106,6 +107,7 @@ class TableroController {
 
         // Formularios
         this.setupFormListeners();
+        document.addEventListener('modalsLoaded', () => this.setupFormListeners());
     }
 
     /**
@@ -124,8 +126,10 @@ class TableroController {
             formUnirse.addEventListener('submit', (e) => this.handleJoinSubmit(e));
         }
 
-        // Listeners del modal de compartir
-        this.setupShareModalListeners();
+        if (!this.shareListenersInitialized) {
+            this.setupShareModalListeners();
+            this.shareListenersInitialized = true;
+        }
     }
 
     /**
